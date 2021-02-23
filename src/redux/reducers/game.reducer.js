@@ -10,7 +10,5 @@ const gameReducer = (state = {}, action) => {
             return state;
     }
 };
-
-// user will be on the redux state at:
-// state.user
+// do you want a comment?
 export default gameReducer;

@@ -13,7 +13,7 @@ import game from './game.reducer';
 const rootReducer = combineReducers({
   errors, // contains registrationMessage and loginMessage
   user, // will have an id and username if someone is logged in
-  game, // for moving game things around.
+  game // for moving game things around.
 });
 
 export default rootReducer;

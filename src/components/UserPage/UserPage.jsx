@@ -1,9 +1,11 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { useState } from 'react';
 
 function UserPage() {
   // AKA the GM screen page.
+
+const dispatch = useDispatch();
   let [newGame, setGame] = useState({ 
     name: '',
     total_tiles: '',
@@ -15,7 +17,7 @@ function UserPage() {
 
   const makeNewGame = event => {
     event.preventDefault();
-    console.log("in makeNewGame", newFilm);
+    console.log("in makeNewGame", newGame);
     dispatch({ type: 'MAKE_GAME', payload: newGame });
     setGame({
       name: '',

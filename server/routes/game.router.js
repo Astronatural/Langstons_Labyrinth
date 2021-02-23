@@ -1,5 +1,5 @@
 const express = require('express');
-const { default: gameReducer } = require('../../src/redux/reducers/game.reducer');  // src/redux/reducers/game.reducer.js
+// const { default: gameReducer } = require('../src/redux/reducers/game.reducer');  // src/redux/reducers/game.reducer.js
 const pool = require('../modules/pool');
 const router = express.Router();
 
@@ -22,20 +22,20 @@ router.post('/', (req, res) => {
 
     // above sets 2 values for a new game, others are default, still need to assign tiles.
     pool.query(newGameQuery, [req.body.name, req.body.total_tiles])
-        .then(result => {
+        .then( async result => {
             console.log('New Game Id:', result.rows[0].id); //ID IS HERE!
             const createdGameId = result.rows[0].id  //ID IS HERE!
 
-            const tile = then.pool.query('SELECT * FROM tiles ORDER BY RANDOM() LIMIT 1');
             const insertTileGenQuery = `
       INSERT INTO "games_tiles" ("game_id", "tile_id")
       VALUES  ($1, #2) WHERE "game_id"=$1;
       `
             var i = 0;
-            while (i < req.body.total_tiles) {
+            while (i < Number.req.body.total_tiles) {
+                const tile = await pool.query('SELECT * FROM tiles ORDER BY RANDOM() LIMIT 1');
                 pool.query(insertTileGenQuery, [createdGameId, tile.id]);
                 i++;
-            }
+            };
             // .then(result => {  //  don't need a send status just yet...
 
             res.sendStatus(201);
@@ -44,11 +44,11 @@ router.post('/', (req, res) => {
             console.log(err);
             res.sendStatus(500)
         })
-
-    // Catch for first query
-}).catch(err => {
-    console.log(err);
-    res.sendStatus(500)
+        // Catch for first query
+        .catch(err => {
+            console.log(err);
+            res.sendStatus(500)
+        })
 })
 
 

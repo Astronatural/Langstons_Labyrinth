@@ -21,7 +21,8 @@ Server stuff:
 
 
 Distpatches:
-    FETCH_GAME  //  to call the GET for an old game.
+    FETCH_GAME  //  to GET a SPECIFIC GAME to the GAMEBOARD.
+    FETCH_GAMES  //  to GET a list of games for the GM SCREEN.
     MAKE_GAME  //  to GET a new game.
     DELETE  //   obviously.
     MOVE_PC  //  update the Party token

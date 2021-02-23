@@ -1,9 +1,11 @@
 const gameReducer = (state = {}, action) => {
     switch (action.type) {
-        case 'SET_USER':
+        case 'MAKE_GAME':
             return action.payload;
-        case 'UNSET_USER':
-            return {};
+        case 'FETCH_GAME':
+            return action.payload.id;
+        case 'FETCH_GAMES':
+            return action.payload;
         default:
             return state;
     }

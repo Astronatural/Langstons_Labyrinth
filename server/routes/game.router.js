@@ -1,4 +1,5 @@
 const express = require('express');
+const { default: gameReducer } = require('../../src/redux/reducers/game.reducer');
 const pool = require('../modules/pool');
 const router = express.Router();
 
@@ -22,33 +23,40 @@ router.post('/', (req, res) => {
     pool.query(newGameQuery, [req.body.name, req.body.total_tiles])
         .then(result => {
             console.log('New Game Id:', result.rows[0].id); //ID IS HERE!
+            const createdGameId = result.rows[0].id  //ID IS HERE!
 
-            const createdGameId = result.rows[0].id
-
-            // Now handle the tiles, link it to new game
-            const insertGameTileIDQuery = `
-      INSERT INTO "games_tiles" ("game_id", "genre_id")
-      VALUES  ($1, $2);
-      `
-            pool.query(insertGameTileIDQuery, [createdGameId, req.body.genre_id]).then(result => {
-                // then figure out how to have game_tiles spwan all that info.
+            // handle the tiles, first link it to new game.  If I insert the game_id #= to total_tiles that would get me the right #.
+    //         const insertGameTileIDQuery = `  // this becomes redundant if I am going to the insert it 9 more times.
+    //   INSERT INTO "games_tiles" ("game_id")
+    //   VALUES  ($1);
+    //   `
+    //         pool.query(insertGameTileIDQuery, [createdGameId]).then(result => {
+    //             // then figure out how to have game_tiles spawn all that info.
                 const insertTileGenQuery = `
-      INSERT INTO "games_tiles" ("game_id", "genre_id")
-      VALUES  ($1, $2) WHERE "game_id"=$1;
-      `            pool.query(insertGameTileIDQuery, [createdGameId, req.body.genre_id]).then(result => {
+      INSERT INTO "games_tiles" ("game_id")
+      VALUES  ($1) WHERE "game_id"=$1;
+      `
+                var i = 0;
+                while (i < req.body.total_tiles) {
+                    pool.query(insertTileGenQuery, [createdGameId]);
+                    i++;
+                }
+                
+                
+                .then(result => {
 
-                res.sendStatus(201);
+                    res.sendStatus(201);
+                }).catch(err => {
+                    // catch for second query
+                    console.log(err);
+                    res.sendStatus(500)
+                })
+
+                // Catch for first query
             }).catch(err => {
-                // catch for second query
                 console.log(err);
                 res.sendStatus(500)
             })
-
-            // Catch for first query
-        }).catch(err => {
-            console.log(err);
-            res.sendStatus(500)
         })
-})
 
-module.exports = router;
+    module.exports = router;

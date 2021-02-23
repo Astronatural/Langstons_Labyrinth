@@ -10,6 +10,7 @@ function UserPage() {
     <div className="container">
       <h2>Welcome, {user.username}!</h2>
       <p>Your ID is: {user.id}</p>
+      <p>This is where you see your games and can create a new one!</p>
       <LogOutButton className="btn" />
     </div>
   );

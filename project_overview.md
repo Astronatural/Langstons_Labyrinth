@@ -27,3 +27,12 @@ Distpatches:
     MOVE_PC  //  update the Party token
     MOVE_BOSS  //  update the Boss token
     MOVE_MAZE  //  update the labyrinth position.
+
+Remeber:
+    set up the readMe, eventually.
+
+Colors:
+    slateish Blue: #4a5462
+        darker: #333941
+    ground brown: #796755
+        darker: #423934

@@ -16,36 +16,35 @@ router.post('/', (req, res) => {
     console.log(req.body);
     // RETURNING "id" will give us back the id of the created game
     const newGameQuery = `
-  INSERT INTO "game" ("name", "total_tiles")
-  VALUES ($1, $2)
+  INSERT INTO "game" ("name", "total_tiles", "user_id")
+  VALUES ($1, $2, $3)
   RETURNING "id";`
 
     // above sets 2 values for a new game, others are default, still need to assign tiles.
-    pool.query(newGameQuery, [req.body.name, req.body.total_tiles])
+    pool.query(newGameQuery, [req.body.name, req.body.total_tiles, req.user.id])
         .then( async result => {
             console.log('New Game Id:', result.rows[0].id); //ID IS HERE!
             const createdGameId = result.rows[0].id  //ID IS HERE!
 
             const insertTileGenQuery = `
-      INSERT INTO "games_tiles" ("game_id", "tile_id")
-      VALUES  ($1, #2) WHERE "game_id"=$1;
+      INSERT INTO "game_tiles" ("game_id", "tile_id", "tile_orientation", "tile_pos")
+      VALUES  ($1, $2, 1, $3);
       `
             var i = 0;
-            while (i < Number.req.body.total_tiles) {
-                const tile = await pool.query('SELECT * FROM tiles ORDER BY RANDOM() LIMIT 1');
-                pool.query(insertTileGenQuery, [createdGameId, tile.id]);
+           
+            while (i < Number(req.body.total_tiles)) {
+                const shapeResult = await pool.query('SELECT * FROM "tiledex" ORDER BY RANDOM() LIMIT 1');
+                console.log(shapeResult.rows[0]);
+                
+                const tile = shapeResult.rows[0];
+                pool.query(insertTileGenQuery, [createdGameId, tile.id, tile.id]);
                 i++;
             };
             // .then(result => {  //  don't need a send status just yet...
 
             res.sendStatus(201);
         }).catch(err => {
-            // catch for second query
-            console.log(err);
-            res.sendStatus(500)
-        })
-        // Catch for first query
-        .catch(err => {
+            // catch 
             console.log(err);
             res.sendStatus(500)
         })

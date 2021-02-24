@@ -11,7 +11,7 @@ router.get('/', (req, res) => {
 });
 
 
-// POST to add a newGame.
+// POST to add a newGame.  
 router.post('/', (req, res) => {
     console.log(req.body);
     // RETURNING "id" will give us back the id of the created game
@@ -24,20 +24,19 @@ router.post('/', (req, res) => {
     pool.query(newGameQuery, [req.body.name, req.body.total_tiles, req.user.id])
         .then( async result => {
             console.log('New Game Id:', result.rows[0].id); //ID IS HERE!
-            const createdGameId = result.rows[0].id  //ID IS HERE!
+            const createdGameId = result.rows[0].id  //in the new result on the new row gets the id.
 
             const insertTileGenQuery = `
-      INSERT INTO "game_tiles" ("game_id", "tile_id", "tile_orientation", "tile_pos")
+      INSERT INTO "game_tiles" ("game_id", "shape_url", "tile_orientation", "tile_pos")
       VALUES  ($1, $2, 1, $3);
       `
             var i = 0;
-           
             while (i < Number(req.body.total_tiles)) {
                 const shapeResult = await pool.query('SELECT * FROM "tiledex" ORDER BY RANDOM() LIMIT 1');
                 console.log(shapeResult.rows[0]);
                 
                 const tile = shapeResult.rows[0];
-                pool.query(insertTileGenQuery, [createdGameId, tile.id, tile.id]);
+                pool.query(insertTileGenQuery, [createdGameId, tile.shape, i]);  // the first tile.id, is shape, second need to be an increment of total_tiles.
                 i++;
             };
             // .then(result => {  //  don't need a send status just yet...

@@ -6,6 +6,7 @@ function UserPage() {
   // AKA the GM screen page.
 
 const dispatch = useDispatch();
+
   let [newGame, setGame] = useState({ 
     name: '',
     total_tiles: '',
@@ -38,8 +39,8 @@ const dispatch = useDispatch();
       {game.map(game => {
                     return (
                         <div key={game.id} onClick={()=>loader(game)} >
-                            <h3>{game.name}</h3><h3>{game.totaltiles}</h3>
-                            <h3>{game.timestamp?}</h3><button onClick={deleter}>Delete Labyrinth</button>
+                            <h3>{game.name}</h3><h3>{game.turn}</h3>
+                            <button onClick={deleter}>Delete Labyrinth</button>
                         </div>
                         <br>
                     );

@@ -28,15 +28,15 @@ router.post('/', (req, res) => {
 
             const insertTileGenQuery = `
       INSERT INTO "game_tiles" ("game_id", "shape_url", "tile_orientation", "tile_pos")
-      VALUES  ($1, $2, 1, $3);
+      VALUES  ($1, $2, $3, $4);
       `
             var i = 0;
             while (i < Number(req.body.total_tiles)) {
                 const shapeResult = await pool.query('SELECT * FROM "tiledex" ORDER BY RANDOM() LIMIT 1');
                 console.log(shapeResult.rows[0]);
-                
                 const tile = shapeResult.rows[0];
-                pool.query(insertTileGenQuery, [createdGameId, tile.shape, i]);  // the first tile.id, is shape, second need to be an increment of total_tiles.
+                const orientation = Math.floor((Math.random()*4)+1);
+                    pool.query(insertTileGenQuery, [createdGameId, tile.shape, orientation,  i]);  // the first tile.id, is shape, second need to be an increment of total_tiles.
                 i++;
             };
             // .then(result => {  //  don't need a send status just yet...

@@ -11,7 +11,10 @@ const {
 router.get('/', rejectUnauthenticated, (req, res) => {
     // GET route code here
     const query = `SELECT * FROM "game" WHERE "user_id"=$1;`
-    pool.query(query, [req.user.id]).then(result => { res.send(result.rows); })
+    pool.query(query, [req.user.id]).then(result => {
+        res.send(result.rows); 
+    //console.log(result.rows);
+    })
     .catch(err => {
         console.log("error getting games", err);
         res.sendStatus(500)

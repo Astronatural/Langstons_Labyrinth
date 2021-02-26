@@ -1,15 +1,13 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { useState, useEffect } from 'react';
 
 
 function UserPage() {
   // AKA the GM screen page.
 
   const dispatch = useDispatch();
-  const game = useSelector((store) => store.game);
+  const game = useSelector((store) => store.gameReducer);
   const user = useSelector((store) => store.user);
-
 
   useEffect(() => {
     dispatch({ type: 'FETCH_GAMES' });
@@ -31,12 +29,12 @@ function UserPage() {
   };
 
 
-  const loader = () => { };
+  const loader = () => {};
 
-  // const deleter() => 
+  const deleter = () => {};
 
   return (
-    <>
+    <>    
       <div className="container">
         <h2>Welcome, {user.username}!</h2>
         {/* <p>Your ID is: {user.id}</p> */}

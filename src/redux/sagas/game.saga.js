@@ -1,10 +1,11 @@
 import { put, takeEvery, takeLatest } from 'redux-saga/effects';
 import axios from 'axios';
 
+
 // saga for posting new games
 function* gameSaga(action) {
     try {
-        yield axios.post('api/game', action.payload);
+        yield axios.post('/api/game', action.payload);
     } catch (error) {
         console.log('Error with user registration:', error);
         yield put({ type: 'REGISTRATION_FAILED' });  // don't have an error listed for this yet though.
@@ -12,9 +13,11 @@ function* gameSaga(action) {
 }
 
 // saga for geting game list to the GM screen, should only send games related to user.id.
-function* fetchGameSaga(action) {
+function* fetchGameSaga() {
     try {
-        const game = yield axios.get('/api/game', action.payload);
+        console.log('in fetch game saga');
+        const game = yield axios.get('/api/game'); // , action.payload
+        console.log(game.data);
         yield put({ type: 'SET_GAMES', payload: game.data });
     } catch (error) {
         console.log('game get request failed', error);

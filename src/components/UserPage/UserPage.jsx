@@ -25,13 +25,22 @@ function UserPage() {
     setGame({
       name: '',
       total_tiles: ''
-    }).then.dispatch({ type: 'FETCH_GAMES' })
+    });
+   dispatch({ type: 'FETCH_GAMES' });
   };
 
 
-  const loader = () => {};
+  const loader = () => {
+   // console.log('loader activate'); onClick={() => loader(game)}
+};
 
-  const deleter = () => {};
+
+  const deleter = (game) => {
+    //console.log('deleter activate: game id:', {id});
+    dispatch({ type: 'DELETE_GAME', payload: game.id})
+    dispatch({ type: 'FETCH_GAMES'});
+  };
+
 
   return (
     <>    
@@ -39,7 +48,7 @@ function UserPage() {
         <h2>Welcome, {user.username}!</h2>
         {/* <p>Your ID is: {user.id}</p> */}
         <p>This is where you load your Labyrinths from!</p>
-        {/* map over games linked to user_id here */}
+        {game.length > 0 &&
         <table>
           <thead>
             <tr>
@@ -49,14 +58,15 @@ function UserPage() {
           <tbody>
             {game.map(game => {
               return (
-                <tr key={game.id} onClick={() => loader(game)} >
+                <tr key={game.id} >
                   <td>{game.name}</td><td>{game.turn}</td>
-                  <td><button onClick={deleter}>Delete Labyrinth</button></td>
+                  <td><button onClick={() => deleter(game)}>Delete Labyrinth</button></td>
                 </tr>
               );
             })}
           </tbody>
         </table>
+      }
       </div>
         <p>This is where you make a new Labyrinth!</p>
         <form onSubmit={makeNewGame} >
@@ -74,12 +84,10 @@ function UserPage() {
             placeholder="Set Labyrinth Width(9)" />
           <div className="buttonDiv">
             <button type="submit" value='submit'>Create and Load New Labyrinth</button>
-            {/* <LogOutButton className="btn" />  // this is in the nav at the top, don't need here. */}
           </div>
         </form>
       </>
-  );
-  
+  );  
 }
 
 export default UserPage;

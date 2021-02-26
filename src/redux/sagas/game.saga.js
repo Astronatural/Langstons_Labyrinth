@@ -24,9 +24,21 @@ function* fetchGameSaga() {
     }
 }
 
+
+function* deleteGameSaga(action) {
+    try {
+        yield axios.delete(`/api/game/${action.payload}`);
+       yield put({ type: 'FETCH_GAMES' });  // right, I want to reset the game list?        
+    } catch {
+        console.log('delete error id:', action.payload);
+
+    }
+}
+
 function* addGameSaga() {
-    yield takeLatest('MAKE_GAME', gameSaga);
-    yield takeEvery('FETCH_GAMES', fetchGameSaga)
+    yield takeLatest('MAKE_GAME', gameSaga),
+        yield takeEvery('FETCH_GAMES', fetchGameSaga),
+        yield takeEvery('DELETE_GAME', deleteGameSaga)
 }
 
 export default addGameSaga;

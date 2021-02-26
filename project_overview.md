@@ -23,11 +23,12 @@ Server stuff:
 Distpatches:
     FETCH_GAME  //  to GET a SPECIFIC GAME to the GAMEBOARD.
     FETCH_GAMES  //  to GET a list of games for the GM SCREEN.
-    MAKE_GAME  //  to GET a new game.
+    MAKE_GAME  //  to POST a new game.
     DELETE  //   obviously.
     MOVE_PC  //  update the Party token
     MOVE_BOSS  //  update the Boss token
     MOVE_MAZE  //  update the labyrinth position.
+    SET_GAMES // trigger for the game store.
 
 Remeber:
     set up the readMe, eventually.

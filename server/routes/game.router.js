@@ -1,13 +1,21 @@
 const express = require('express');
-// const { default: gameReducer } = require('../src/redux/reducers/game.reducer');  // src/redux/reducers/game.reducer.js
 const pool = require('../modules/pool');
 const router = express.Router();
+const {
+    rejectUnauthenticated,
+} = require('../modules/authentication-middleware');
 
 /**
  * GET route template
  */
-router.get('/', (req, res) => {
+router.get('/', rejectUnauthenticated, (req, res) => {
     // GET route code here
+    const query = `SELECT * FROM "game" WHERE "user_id"=$1;`
+    pool.query(query, [req.user.id]).then(result => { res.send(result.rows); })
+    .catch(err => {
+        console.log("error getting games", err);
+        res.sendStatus(500)
+    })
 });
 
 

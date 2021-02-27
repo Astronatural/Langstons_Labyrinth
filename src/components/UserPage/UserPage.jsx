@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 
 
 function UserPage() {
   // AKA the GM screen page.
 
+  const history = useHistory();
   const dispatch = useDispatch();
   const game = useSelector((store) => store.gameReducer);
   const user = useSelector((store) => store.user);
@@ -30,8 +32,11 @@ function UserPage() {
   };
 
 
-  const loader = () => {
-   // console.log('loader activate'); onClick={() => loader(game)}
+  const loader = (game) => {
+   console.log('loader activate', game.id);
+    dispatch({ type: 'FETCH_GAME', payload: game.id });
+
+   history.push('/game');
 };
 
 
@@ -52,13 +57,14 @@ function UserPage() {
         <table>
           <thead>
             <tr>
-              <th>Labyrinth Name</th><th>Turn #</th><th><span></span></th>
+              <th></th><th>Labyrinth Name</th><th>Turn #</th><th></th>
             </tr>
           </thead>
           <tbody>
             {game.map(game => {
               return (
                 <tr key={game.id} >
+                  <td><button onClick={() => loader(game)}>Load Labyrinth</button></td>
                   <td>{game.name}</td><td>{game.turn}</td>
                   <td><button onClick={() => deleter(game)}>Delete Labyrinth</button></td>
                 </tr>

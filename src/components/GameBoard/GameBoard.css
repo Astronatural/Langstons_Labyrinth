@@ -1,0 +1,38 @@
+.button-container {
+    display: grid;
+    grid-template-areas:    'zone1 zone2 zone3 zone4 zone5 zone6';
+    grid-gap: .4em;
+    align-content: center;
+    background-color: rgb(111, 106, 116);
+    padding: .3em;
+}
+
+.bear-container {
+    display: grid;
+    grid-template-areas:    'zone1 zone2 zone3 zone4 zone5 zone6 zone7';
+    grid-gap: .4em;
+    align-content: center;
+    background-color: rgb(111, 106, 116);
+    padding: .3em;
+}
+
+.bear-container > div {
+    background-color: rgb(197, 192, 201);
+    display: grid;
+    text-align: center;
+    align-content: center;
+    font-size: 1em;
+    padding: .2em;
+    color:rgb(148, 94, 14);
+}
+
+button {
+    margin: .3em;
+    background-color: rgb(197, 192, 201);
+    display: grid;
+    text-align: center;
+    align-content: center;
+    font-size: .5em;
+    padding: .2em;
+    color: rgb(148, 94, 14);
+}

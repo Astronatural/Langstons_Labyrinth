@@ -15,7 +15,7 @@ function* gameSaga(action) {
 // saga for geting game list to the GM screen, should only send games related to user.id.
 function* fetchGameSaga() {
     try {
-        console.log('in fetch game saga');
+        console.log('in fetch games saga');
         const game = yield axios.get('/api/game'); // , action.payload
         console.log(game.data);
         yield put({ type: 'SET_GAMES', payload: game.data });
@@ -35,10 +35,23 @@ function* deleteGameSaga(action) {
     }
 }
 
+// saga for geting a game to the gameboard.
+function* gameBoardSaga() {
+    try {
+        //console.log('in fetch game saga', action.payload);
+        const game = yield axios.get(`/api/game${action.payload}`); // , action.payload
+        yield put({ type: 'SET_GAMEBOARD', payload: game.data });
+    } catch (error) {
+        console.log('game get request failed', error);
+    }
+}
+
+
 function* addGameSaga() {
     yield takeLatest('MAKE_GAME', gameSaga),
         yield takeEvery('FETCH_GAMES', fetchGameSaga),
-        yield takeEvery('DELETE_GAME', deleteGameSaga)
+        yield takeEvery('DELETE_GAME', deleteGameSaga),
+        yield takeLatest('FETCH_GAME', gameBoardSaga)
 }
 
 export default addGameSaga;

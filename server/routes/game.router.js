@@ -63,13 +63,30 @@ router.delete(`/:id`, (req, res) => {
     const query = `DELETE FROM "game" WHERE "id"=$1;`  //  RETURNING "id"?
     pool.query(query, [gameOver])
         .then ( async result => {
-            const gameTilesQuery = `DELETE FROM "game_tiles" WHERE "id"=$1;`
+            const gameTilesQuery = `DELETE FROM "game_tiles" WHERE "game_id"=$1;` 
             pool.query(gameTilesQuery, [gameOver]);
         })
         .catch (err => {
     console.log("error getting games", err);
     res.sendStatus(500)
 })
+});
+
+
+router.get(`/:id`, (req, res) => {
+    console.log(req.params.id);
+    const gameOn = req.params.id;
+    const query = `SELECT * FROM "game" WHERE "id"=$1;`  //  RETURNING "id"?
+    pool.query(query, [gameOn])
+        .then(async result => {  
+            const gameTilesQuery = `SELECT * FROM "game_tiles" WHERE "game_id"=$1;`
+            pool.query(gameTilesQuery, [gameOn]);
+            res.send(result.rows);
+        })
+        .catch(err => {
+            console.log("error getting games", err);
+            res.sendStatus(500)
+        })
 });
 
 

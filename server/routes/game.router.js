@@ -80,9 +80,9 @@ router.get(`/:id`, (req, res) => {
             pool.query(gameTilesQuery, [gameOn])
             .then( result => {
             console.log('game_tiles', result.rows); // should be game_tiles.
-            // res.send(result.rows);
+            res.send(result.rows);
             }).catch(err => {
-                console.log('still not working')
+                console.log('Could not load game_tiles')
             });
         });
 

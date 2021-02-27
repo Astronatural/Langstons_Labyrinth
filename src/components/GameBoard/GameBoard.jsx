@@ -410,7 +410,7 @@ function GameBoard() {
 
     return (
         <>
-            <p>{game.name}</p>
+            {/* <p>{game.name}</p> // is this stopping the flow?*/}
             <div className="button-container">
                 <button onClick={() => moveCol1Up(grid)}>moveCol1Up</button>
                 <button onClick={() => moveCol1Dn(grid)}>moveCol1Dn</button>
@@ -455,19 +455,24 @@ function GameBoard() {
                 <button onClick={() => moveRow7L(grid)}>moveRow7L</button>
 
             </div>
-
+            <img src=".../public/tiles/fork.png"/>
             <div className="bear-container">
-                {grid.map(tile => {
+                {game.map(tile => { //  should be grid though. style={tile.tile_orientation} eventually.  public/tiles/fork.png
                     return (
-                        <div key={tile.tile_pos} style={tile.tile_orientation}>
-                            <img src={tile.shape_url}/><div>{tile.id}</div>
+                        <div key={tile.tile_pos} > 
+                            <img src={tile.shape_url}/>
+                            <div>{tile.id}</div>
                     </div>
-                    )
+                    );
                 })}
             </div>
+            {/* <button>Save and Exit</button> */}
         </>
     )
 }
 
 
 export default GameBoard;
+
+
+// /Users/jdk/eda/tier_3/LangstonsLabyrinth/public/tiles/fork.png

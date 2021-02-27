@@ -6,8 +6,8 @@ const gameReducer = (state = [], action) => {   //  tried; {} = game.map is not 
             console.log(action.payload);
             return action.payload;
         case 'SET_GAMEBOARD':
-            console.log(action.payload);
-            return action.payload;
+            console.log(action.payload);  // currently the game table row, shouldn't it be the game_tiles?
+            return [...state], action.payload;  // maybe [...state], action.payload;
         default:
             return state;
     }

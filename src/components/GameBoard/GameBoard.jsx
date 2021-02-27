@@ -11,10 +11,11 @@ function GameBoard() {
     const dispatch = useDispatch();
     const game = useSelector((store) => store.gameReducer);
     const user = useSelector((store) => store.user);
+
     useEffect(() => {
     }, []);
 
-    let [grid, setGrid] = useState([{game}]);
+    let [grid, setGrid] = useState([{...game}]);
     // let [grid, setGrid] = useState([{gridobject}]) // can I just slam a store output in here?
 
     //  affect G1->G7 *** 42-48
@@ -458,7 +459,9 @@ function GameBoard() {
             <div className="bear-container">
                 {grid.map(tile => {
                     return (
-                        <div key={tile.tile_pos}>{tile.shape_url}</div>
+                        <div key={tile.tile_pos} style={tile.tile_orientation}>
+                            <div>{tile.shape_url}{tile.id}</div>
+                    </div>
                     )
                 })}
             </div>

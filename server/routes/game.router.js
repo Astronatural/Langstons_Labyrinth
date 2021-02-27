@@ -74,20 +74,17 @@ router.delete(`/:id`, (req, res) => {
 
 
 router.get(`/:id`, (req, res) => {
-    console.log(req.params.id);
-    const gameOn = req.params.id;
-    const query = `SELECT * FROM "game" WHERE "id"=$1;`  //  RETURNING "id"?
-    pool.query(query, [gameOn])
-        .then(async result => {  
+    console.log('game router',req.params.id);  // is the correct id
+    const gameOn = req.params.id; 
             const gameTilesQuery = `SELECT * FROM "game_tiles" WHERE "game_id"=$1;`
-            pool.query(gameTilesQuery, [gameOn]);
-            res.send(result.rows);
-        })
-        .catch(err => {
-            console.log("error getting games", err);
-            res.sendStatus(500)
-        })
-});
+            pool.query(gameTilesQuery, [gameOn])
+            .then( result => {
+            console.log('game_tiles', result.rows); // should be game_tiles.
+            // res.send(result.rows);
+            }).catch(err => {
+                console.log('still not working')
+            });
+        });
 
 
 module.exports = router;
@@ -103,3 +100,6 @@ module.exports = router;
     //   `
     //         pool.query(insertGameTileIDQuery, [createdGameId]).then(result => {
     //             // then figure out how to have game_tiles spawn all that info.
+
+// const query = `SELECT * FROM "game" WHERE "id"=$1;`
+// pool.query(query, [gameOn])

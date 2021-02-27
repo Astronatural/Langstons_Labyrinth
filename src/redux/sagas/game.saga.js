@@ -34,13 +34,12 @@ function* deleteGameSaga(action) {
 
     }
 }
-
 // saga for geting a game to the gameboard.
-function* gameBoardSaga() {
+function* gameBoardSaga(action) {
     try {
-        //console.log('in fetch game saga', action.payload);
-        const game = yield axios.get(`/api/game${action.payload}`); // , action.payload
-        yield put({ type: 'SET_GAMEBOARD', payload: game.data });
+        console.log('in fetch game saga', action.payload);
+        const game = yield axios.get(`/api/game/${action.payload}`); // , action.payload
+        yield put({ type: 'SET_GAMEBOARD', payload: game.data }); // ??
     } catch (error) {
         console.log('game get request failed', error);
     }

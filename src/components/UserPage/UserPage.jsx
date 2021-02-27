@@ -41,7 +41,7 @@ function UserPage() {
 
   const deleter = (game) => {
     //console.log('deleter activate: game id:', {id});
-    dispatch({ type: 'DELETE_GAME', payload: game.id})
+    dispatch({ type: 'DELETE_GAME', payload: game.id})  // put and axio req right here.
     dispatch({ type: 'FETCH_GAMES'});
   };
 

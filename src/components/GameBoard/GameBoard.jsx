@@ -460,7 +460,7 @@ function GameBoard() {
                 {grid.map(tile => {
                     return (
                         <div key={tile.tile_pos} style={tile.tile_orientation}>
-                            <div>{tile.shape_url}{tile.id}</div>
+                            <img src={tile.shape_url}/><div>{tile.id}</div>
                     </div>
                     )
                 })}

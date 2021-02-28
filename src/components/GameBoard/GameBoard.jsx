@@ -1,22 +1,36 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { useHistory } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 import './GameBoard.css';
 
 
 function GameBoard() {
 
-
+    const params = useParams();
     const history = useHistory();
     const dispatch = useDispatch();
     const game = useSelector((store) => store.gameReducer);
     const user = useSelector((store) => store.user);
 
-    useEffect(() => {
-    }, []);
+ 
 
-    let [grid, setGrid] = useState([{...game}]);
+    let [grid, setGrid] = useState([...game]);
     // let [grid, setGrid] = useState([{gridobject}]) // can I just slam a store output in here?
+
+    // useEffect(() => {
+    //     setGrid([...game]);
+    // }, [game]);
+
+       useEffect(() => {
+           const gameId = Number(params.game_id);  // or maybe it's just id, but I think I need the tiles.
+           console.log(`game_tiles id= ${game.game_id}`);
+           const foundGame = game.filter((game) => game.game_id === gameId);
+           if (foundGame.length > 0) {
+               dispatch({ 
+                   type: 'SET_GAME', payload: foundGame[0]
+            }); 
+           }
+    }, []);
 
     //  affect G1->G7 *** 42-48
     function moveRow7R(grid) {
@@ -455,16 +469,19 @@ function GameBoard() {
                 <button onClick={() => moveRow7L(grid)}>moveRow7L</button>
 
             </div> 
+            {game.length > 0 &&
             <div className="bear-container">
-                {game.map(tile => { //  should be grid though. style={tile.tile_orientation} eventually. src/components/GameBoard/Tiles/fork.png
+                {grid.map(tile => { // style={tile.tile_orientation} eventually. src/components/GameBoard/Tiles/fork.png
                     return (
                         <div key={tile.tile_pos} > 
+                            <div>
                             <img src={tile.shape_url}/>
-                            <div>{tile.id}</div>
+                            {tile.id}</div>
                     </div>
                     );
-                })}
+                })}            
             </div>
+            }
             {/* <button>Save and Exit</button> */}
         </>
     )

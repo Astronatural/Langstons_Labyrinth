@@ -21,7 +21,7 @@ router.get('/', rejectUnauthenticated, (req, res) => {
 });
 
 
-// POST to add a newGame.  
+// POST to add a newGame.  --> im going to want to do a third query to make sure tile_pos.0 is cross and tile_pos.24 is end.
 router.post('/', (req, res) => {
     console.log(req.body);
     // RETURNING "id" will give us back the id of the created game

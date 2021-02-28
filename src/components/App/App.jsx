@@ -62,8 +62,8 @@ function App() {
 
           <ProtectedRoute
             // logged in shows gameboard else shows LoginPage
-            exact
-            path="/game"
+            
+            path="/game/:id" exact
           >
             <GameBoard />
           </ProtectedRoute>

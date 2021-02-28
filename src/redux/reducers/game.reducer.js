@@ -6,8 +6,8 @@ const gameReducer = (state = [], action) => {   //  tried; {} = game.map is not 
             console.log(action.payload);
             return action.payload;
         case 'SET_GAMEBOARD':
-            console.log(action.payload);  // the right stuff
-            return action.payload;  
+            console.log(action.payload);  // the right stuff!
+            return [...state], action.payload;  
         default:
             return state;
     }

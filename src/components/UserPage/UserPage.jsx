@@ -33,7 +33,7 @@ function UserPage() {
   const loader = (game) => {
    console.log('loader activate', game.id);
     dispatch({ type: 'FETCH_GAME', payload: game.id });
-   history.push('/game');
+      history.push(`/game/:${game.id}`);
 };
 
 
@@ -86,7 +86,7 @@ function UserPage() {
             id="tiles"
             placeholder="Set Labyrinth Width(9)" /> */}
           <div className="buttonDiv">
-            <button type="submit" value='submit'>Create and Load New Labyrinth</button>
+            <button type="submit" value='submit'>Create New Labyrinth</button>
           </div>
         </form>
       </>

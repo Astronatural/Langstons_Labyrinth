@@ -30,7 +30,7 @@ router.post('/', (req, res) => {
   VALUES ($1, $2, $3)
   RETURNING "id";`
     // above sets 2 values for a new game, others are default, still need to assign tiles.
-    pool.query(newGameQuery, [req.body.name, req.body.total_tiles, req.user.id])
+    pool.query(newGameQuery, [req.body.name, 49, req.user.id])
         .then(async result => {
             console.log('New Game Id:', result.rows[0].id); //ID IS HERE!
             const createdGameId = result.rows[0].id  //in the new result on the new row gets the id.
@@ -39,7 +39,7 @@ router.post('/', (req, res) => {
       VALUES  ($1, $2, $3, $4);
       `
             var i = 0;
-            while (i < Number(req.body.total_tiles)) {
+            while (i < 49) {
                 const shapeResult = await pool.query('SELECT * FROM "tiledex" ORDER BY RANDOM() LIMIT 1');
                 console.log(shapeResult.rows[0]);
                 const tile = shapeResult.rows[0];

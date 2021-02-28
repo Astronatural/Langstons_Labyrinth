@@ -454,10 +454,9 @@ function GameBoard() {
                 <button onClick={() => moveRow7R(grid)}>moveRow7R</button>
                 <button onClick={() => moveRow7L(grid)}>moveRow7L</button>
 
-            </div>
-            <img src=".../public/tiles/fork.png"/>
+            </div> 
             <div className="bear-container">
-                {game.map(tile => { //  should be grid though. style={tile.tile_orientation} eventually.  public/tiles/fork.png
+                {game.map(tile => { //  should be grid though. style={tile.tile_orientation} eventually. src/components/GameBoard/Tiles/fork.png
                     return (
                         <div key={tile.tile_pos} > 
                             <img src={tile.shape_url}/>
@@ -476,3 +475,4 @@ export default GameBoard;
 
 
 // /Users/jdk/eda/tier_3/LangstonsLabyrinth/public/tiles/fork.png
+// /Users/jdk/eda/tier_3/LangstonsLabyrinth/src/components/GameBoard/GameBoard.jsx

@@ -17,7 +17,6 @@ function UserPage() {
 
   let [newGame, setGame] = useState({
     name: '',
-    total_tiles: '',
   });
 
   const makeNewGame = event => {
@@ -26,7 +25,6 @@ function UserPage() {
     dispatch({ type: 'MAKE_GAME', payload: newGame });
     setGame({
       name: '',
-      total_tiles: ''
     });
    dispatch({ type: 'FETCH_GAMES' });
   };
@@ -73,7 +71,7 @@ function UserPage() {
         </table>
       }
       </div>
-        <p>This is where you make a new Labyrinth!</p>
+        <p>To make a new Labyrinth just give it a name!</p>
         <form onSubmit={makeNewGame} >
           <input
             value={newGame.name}
@@ -81,12 +79,12 @@ function UserPage() {
             type="text"
             id="name"
             placeholder="Labyrinth Name" />
-          <input
+          {/* <input
             value={newGame.total_tiles}
             onChange={(e) => setGame({ ...newGame, total_tiles: e.target.value })}
             type="number"
             id="tiles"
-            placeholder="Set Labyrinth Width(9)" />
+            placeholder="Set Labyrinth Width(9)" /> */}
           <div className="buttonDiv">
             <button type="submit" value='submit'>Create and Load New Labyrinth</button>
           </div>

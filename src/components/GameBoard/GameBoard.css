@@ -36,3 +36,8 @@ button {
     padding: .2em;
     color: rgb(148, 94, 14);
 }
+
+img {
+    width: 3em;
+    height: 3em;
+}

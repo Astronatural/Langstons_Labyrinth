@@ -447,9 +447,8 @@ function GameBoard() {
         // generate 2 rand # between 1-6.
         moveRow();
         moveCol();
-
         // switch/ case to assign that value to which function to trigger.
-        // generate another 2 random numbers --> deal with rotatoin later, I guess.
+        // generate another 2 random numbers --> deal with rotation later, I guess.
         // deal with the PUT later too...
     };
 
@@ -539,55 +538,15 @@ function GameBoard() {
                     break;
                 default:
                     break;
-            } // end moveRow
-            };
+            } 
+    };  // end moveRow
 
 
             return (
                 <>
-                    {/* <p>{game.name}</p> // is this stopping the flow?*/}
+                    {/* <p>{game.name}</p> game does not contain name, this is game_tiles */}
                     <div className="button-container">
-                        <button onClick={() => moveCol1Up(grid)}>moveCol1Up</button>
-                        <button onClick={() => moveCol1Dn(grid)}>moveCol1Dn</button>
-
-                        <button onClick={() => moveCol2Up(grid)}>moveCol2Up</button>
-                        <button onClick={() => moveCol2Dn(grid)}>moveCol2Dn</button>
-
-                        <button onClick={() => moveCol3Up(grid)}>moveCol3Up</button>
-                        <button onClick={() => moveCol3Dn(grid)}>moveCol3Dn</button>
-
-
-
-                        <button onClick={() => moveCol5Up(grid)}>moveCol5Up</button>
-                        <button onClick={() => moveCol5Dn(grid)}>moveCol5Dn</button>
-
-                        <button onClick={() => moveCol6Up(grid)}>moveCol6Up</button>
-                        <button onClick={() => moveCol6Dn(grid)}>moveCol6Dn</button>
-
-                        <button onClick={() => moveCol7Up(grid)}>moveCol7Up</button>
-                        <button onClick={() => moveCol7Dn(grid)}>moveCol7Dn</button>
-
-
-
-                        <button onClick={() => moveRow1R(grid)}>moveRow1R</button>
-                        <button onClick={() => moveRow1L(grid)}>moveRow1L</button>
-
-                        <button onClick={() => moveRow2R(grid)}>moveRow2R</button>
-                        <button onClick={() => moveRow2L(grid)}>moveRow2L</button>
-
-                        <button onClick={() => moveRow3R(grid)}>moveRow3R</button>
-                        <button onClick={() => moveRow3L(grid)}>moveRow3L</button>
-
-
-
-                        <button onClick={() => moveRow5R(grid)}>moveRow5R</button>
-                        <button onClick={() => moveRow5L(grid)}>moveRow5L</button>
-
-                        <button onClick={() => moveRow6R(grid)}>moveRow6R</button>
-                        <button onClick={() => moveRow6L(grid)}>moveRow6L</button>
-
-                        <button onClick={() => moveRow7R(grid)}>moveRow7R</button>
-                        <button onClick={() => moveRow7L(grid)}>moveRow7L</button>
+                        
 
                         <button onClick={() => randomizer()}>End Turn</button>
 

@@ -33,7 +33,7 @@ function UserPage() {
   const loader = (game) => {
    console.log('loader activate', game.id);
     dispatch({ type: 'FETCH_GAME', payload: game.id });
-      history.push(`/game/:${game.id}`);
+      history.push(`/game/${game.id}`);
 };
 
 

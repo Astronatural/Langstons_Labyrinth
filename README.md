@@ -125,3 +125,5 @@ Customize this ReadMe and the code comments in this project to read less like a 
 ## Notes and Thanks
 
 davidepesce.com for the tiles images.
+
+query string

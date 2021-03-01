@@ -44,7 +44,23 @@ router.post('/', (req, res) => {
                 console.log(shapeResult.rows[0]);
                 const tile = shapeResult.rows[0];
                 const orientation = Math.floor((Math.random() * 4) + 1);
-                pool.query(insertTileGenQuery, [createdGameId, tile.shape, orientation, i]);  // the first tile.id, is shape, second need to be an increment of total_tiles.
+                switch (orientation) {
+                    case 1:
+                        orientationVal = 'zero';
+                        break;
+                    case 2:
+                        orientationVal = 'ninety';
+                        break;
+                    case 3:
+                        orientationVal = 'oneEight';
+                        break;
+                    case 4:
+                        orientationVal = 'twoSeven';
+                        break;
+                    default:
+                        break;
+                }
+                pool.query(insertTileGenQuery, [createdGameId, tile.shape, orientationVal, i]);  // the first tile.id, is shape, second need to be an increment of total_tiles.
                 i++;
             };
             // .then(result => {  //  don't need a send status just yet...
@@ -62,29 +78,29 @@ router.delete(`/:id`, (req, res) => {
     const gameOver = req.params.id;
     const query = `DELETE FROM "game" WHERE "id"=$1;`  //  RETURNING "id"?
     pool.query(query, [gameOver])
-        .then ( async result => {
-            const gameTilesQuery = `DELETE FROM "game_tiles" WHERE "game_id"=$1;` 
+        .then(async result => {
+            const gameTilesQuery = `DELETE FROM "game_tiles" WHERE "game_id"=$1;`
             pool.query(gameTilesQuery, [gameOver]);
         })
-        .catch (err => {
-    console.log("error getting games", err);
-    res.sendStatus(500)
-})
+        .catch(err => {
+            console.log("error getting games", err);
+            res.sendStatus(500)
+        })
 });
 
 
 router.get(`/:id`, (req, res) => {
-    console.log('game router',req.params.id);  // is the correct id
-    const gameOn = req.params.id; 
-            const gameTilesQuery = `SELECT * FROM "game_tiles" WHERE "game_id"=$1;`
-            pool.query(gameTilesQuery, [gameOn])
-            .then( result => {
+    console.log('game router', req.params.id);  // is the correct id
+    const gameOn = req.params.id;
+    const gameTilesQuery = `SELECT * FROM "game_tiles" WHERE "game_id"=$1;`
+    pool.query(gameTilesQuery, [gameOn])
+        .then(result => {
             console.log('game_tiles', result.rows); // should be game_tiles.
             res.send(result.rows);
-            }).catch(err => {
-                console.log('Could not load game_tiles')
-            });
+        }).catch(err => {
+            console.log('Could not load game_tiles')
         });
+});
 
 
 module.exports = router;

@@ -107,13 +107,13 @@ router.put(`/:id`, async (req, res) => {
     const mazeToUpdate = req.params.id;
     const update = req.body.payload;
     console.log('update router, game & update', mazeToUpdate, update);  // mazeToUpdate correct, update correct.
-    const queryText = `UPDATE "game_tiles" SET "tile_pos" = $1, "tile_orientation"= $2
-                    WHERE "id" = $3 AND "game_id" = $4;`;
+    // const queryText = `UPDATE "game_tiles" SET "tile_pos" = $1, "tile_orientation"= $2
+    //                 WHERE "id" = $3 AND "game_id" = $4;`;
     try {
-    var i = 0;
-    while (i < 49) {
-        await pool.query(queryText, [update.tile_pos, update.tile_orientation, update.id, mazeToUpdate])
-        i++;
+        for (let i = 0; i < update.length; i++) {
+        const queryText = `UPDATE "game_tiles" SET "tile_pos" = $1, "tile_orientation"= $2
+                    WHERE "id" = $3 AND "game_id" = $4;`;
+        await pool.query(queryText, [update[i].tile_pos, update[i].tile_orientation, update[i].id, mazeToUpdate])
     };
     res.sendStatus(201);
 } // end try

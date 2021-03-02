@@ -716,8 +716,12 @@ function GameBoard() {
         // PUT the updated tile positions.
         console.log('sending maze move', grid);
         dispatch({ type: 'MOVE_MAZE', payload: grid})  // looks good
-        //  dispatch({ type: "FETCH_GAME", payload: params.id })  // perhaps needed, once update works.
-
+        dispatch({ type: "FETCH_GAME", payload: params.id })  // perhaps needed, once update works.
+        console.log('at end 1R', grid);
+        grid.sort(function (a, b) {
+            return a.tile_pos - b.tile_pos;
+        });
+        setGrid([...grid]);
 
     }; // end randomizer
 
@@ -739,7 +743,7 @@ function GameBoard() {
                 <div className="bear-container">
                     {grid.map(tile => {
                         return (
-                            <div key={tile.tile_pos} >
+                            <div key={tile.id} >
                                 <div>
                                     <p>{tile.id}</p>
                                     <img className={tile.tile_orientation} src={tile.shape_url} />

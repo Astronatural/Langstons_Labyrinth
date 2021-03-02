@@ -40,9 +40,22 @@ function GameBoard() {
                         grid[i].tile_pos += 7;
                     } if ((grid[i].tile_pos) >= 42) {
                         grid[i].tile_pos = 0;
+                        let rotVal = Math.floor((Math.random() * 4) + 1);
+                        if (rotVal === 1) {
+                            grid[i].tile_orientation = 'zero';
+                        }
+                        if (rotVal === 2) {
+                            grid[i].tile_orientation = 'ninety';
+                        }
+                        if (rotVal === 3) {
+                            grid[i].tile_orientation = 'oneEight';
+                        }
+                        if (rotVal === 4) {
+                            grid[i].tile_orientation = 'twoSeven';
+                        }
                     }
                 }
-                console.log('at end', grid);
+                console.log('at end', grid);  //  not sure why when I remove these 5 lines I get double keys...
                 grid.sort(function (a, b) {
                     return a.tile_pos - b.tile_pos;
                 });
@@ -55,6 +68,19 @@ function GameBoard() {
                         grid[i].tile_pos -= 7;
                     } if ((grid[i].tile_pos) < 0) {
                         grid[i].tile_pos = 42;
+                        let rotVal = Math.floor((Math.random() * 4) + 1);
+                        if (rotVal === 1) {
+                            grid[i].tile_orientation = 'zero';
+                        }
+                        if (rotVal === 2) {
+                            grid[i].tile_orientation = 'ninety';
+                        }
+                        if (rotVal === 3) {
+                            grid[i].tile_orientation = 'oneEight';
+                        }
+                        if (rotVal === 4) {
+                            grid[i].tile_orientation = 'twoSeven';
+                        }
                     }
                 }
                 console.log('at end 1up', grid);
@@ -70,6 +96,19 @@ function GameBoard() {
                         grid[i].tile_pos += 7;
                     } if ((grid[i].tile_pos) > 43) {
                         grid[i].tile_pos = 1;
+                        let rotVal = Math.floor((Math.random() * 4) + 1);
+                        if (rotVal === 1) {
+                            grid[i].tile_orientation = 'zero';
+                        }
+                        if (rotVal === 2) {
+                            grid[i].tile_orientation = 'ninety';
+                        }
+                        if (rotVal === 3) {
+                            grid[i].tile_orientation = 'oneEight';
+                        }
+                        if (rotVal === 4) {
+                            grid[i].tile_orientation = 'twoSeven';
+                        }
                     }
                 }
                 console.log('at end', grid);
@@ -85,6 +124,19 @@ function GameBoard() {
                         grid[i].tile_pos -= 7;
                     } if ((grid[i].tile_pos) < 0) {
                         grid[i].tile_pos = 43;
+                        let rotVal = Math.floor((Math.random() * 4) + 1);
+                        if (rotVal === 1) {
+                            grid[i].tile_orientation = 'zero';
+                        }
+                        if (rotVal === 2) {
+                            grid[i].tile_orientation = 'ninety';
+                        }
+                        if (rotVal === 3) {
+                            grid[i].tile_orientation = 'oneEight';
+                        }
+                        if (rotVal === 4) {
+                            grid[i].tile_orientation = 'twoSeven';
+                        }
                     }
                 }
                 console.log('at end', grid);
@@ -100,6 +152,19 @@ function GameBoard() {
                         grid[i].tile_pos += 7;
                     } if ((grid[i].tile_pos) > 44) {
                         grid[i].tile_pos = 2;
+                        let rotVal = Math.floor((Math.random() * 4) + 1);
+                        if (rotVal === 1) {
+                            grid[i].tile_orientation = 'zero';
+                        }
+                        if (rotVal === 2) {
+                            grid[i].tile_orientation = 'ninety';
+                        }
+                        if (rotVal === 3) {
+                            grid[i].tile_orientation = 'oneEight';
+                        }
+                        if (rotVal === 4) {
+                            grid[i].tile_orientation = 'twoSeven';
+                        }
                     }
                 }
                 console.log('at end', grid);
@@ -115,6 +180,19 @@ function GameBoard() {
                         grid[i].tile_pos -= 7;
                     } if ((grid[i].tile_pos) < 0) {
                         grid[i].tile_pos = 44;
+                        let rotVal = Math.floor((Math.random() * 4) + 1);
+                        if (rotVal === 1) {
+                            grid[i].tile_orientation = 'zero';
+                        }
+                        if (rotVal === 2) {
+                            grid[i].tile_orientation = 'ninety';
+                        }
+                        if (rotVal === 3) {
+                            grid[i].tile_orientation = 'oneEight';
+                        }
+                        if (rotVal === 4) {
+                            grid[i].tile_orientation = 'twoSeven';
+                        }
                     }
                 }
                 console.log('at end', grid);
@@ -130,6 +208,19 @@ function GameBoard() {
                         grid[i].tile_pos += 7;
                     } if ((grid[i].tile_pos) > 45) {
                         grid[i].tile_pos = 4;
+                        let rotVal = Math.floor((Math.random() * 4) + 1);
+                        if (rotVal === 1) {
+                            grid[i].tile_orientation = 'zero';
+                        }
+                        if (rotVal === 2) {
+                            grid[i].tile_orientation = 'ninety';
+                        }
+                        if (rotVal === 3) {
+                            grid[i].tile_orientation = 'oneEight';
+                        }
+                        if (rotVal === 4) {
+                            grid[i].tile_orientation = 'twoSeven';
+                        }
                     }
                 }
                 console.log('at end', grid);
@@ -145,6 +236,19 @@ function GameBoard() {
                         grid[i].tile_pos -= 7;
                     } if ((grid[i].tile_pos) < 0) {
                         grid[i].tile_pos = 46;
+                        let rotVal = Math.floor((Math.random() * 4) + 1);
+                        if (rotVal === 1) {
+                            grid[i].tile_orientation = 'zero';
+                        }
+                        if (rotVal === 2) {
+                            grid[i].tile_orientation = 'ninety';
+                        }
+                        if (rotVal === 3) {
+                            grid[i].tile_orientation = 'oneEight';
+                        }
+                        if (rotVal === 4) {
+                            grid[i].tile_orientation = 'twoSeven';
+                        }
                     }
                 }
                 console.log('at end', grid);
@@ -160,6 +264,19 @@ function GameBoard() {
                         grid[i].tile_pos += 7;
                     } if ((grid[i].tile_pos) > 47) {
                         grid[i].tile_pos = 5;
+                        let rotVal = Math.floor((Math.random() * 4) + 1);
+                        if (rotVal === 1) {
+                            grid[i].tile_orientation = 'zero';
+                        }
+                        if (rotVal === 2) {
+                            grid[i].tile_orientation = 'ninety';
+                        }
+                        if (rotVal === 3) {
+                            grid[i].tile_orientation = 'oneEight';
+                        }
+                        if (rotVal === 4) {
+                            grid[i].tile_orientation = 'twoSeven';
+                        }
                     }
                 }
                 console.log('at end', grid);
@@ -175,6 +292,19 @@ function GameBoard() {
                         grid[i].tile_pos -= 7;
                     } if ((grid[i].tile_pos) < 0) {
                         grid[i].tile_pos = 47;
+                        let rotVal = Math.floor((Math.random() * 4) + 1);
+                        if (rotVal === 1) {
+                            grid[i].tile_orientation = 'zero';
+                        }
+                        if (rotVal === 2) {
+                            grid[i].tile_orientation = 'ninety';
+                        }
+                        if (rotVal === 3) {
+                            grid[i].tile_orientation = 'oneEight';
+                        }
+                        if (rotVal === 4) {
+                            grid[i].tile_orientation = 'twoSeven';
+                        }
                     }
                 }
                 console.log('at end', grid);
@@ -190,6 +320,19 @@ function GameBoard() {
                         grid[i].tile_pos += 7;
                     } if ((grid[i].tile_pos) > 48) {
                         grid[i].tile_pos = 6;
+                        let rotVal = Math.floor((Math.random() * 4) + 1);
+                        if (rotVal === 1) {
+                            grid[i].tile_orientation = 'zero';
+                        }
+                        if (rotVal === 2) {
+                            grid[i].tile_orientation = 'ninety';
+                        }
+                        if (rotVal === 3) {
+                            grid[i].tile_orientation = 'oneEight';
+                        }
+                        if (rotVal === 4) {
+                            grid[i].tile_orientation = 'twoSeven';
+                        }
                     }
                 }
                 console.log('at end', grid);
@@ -205,6 +348,19 @@ function GameBoard() {
                         grid[i].tile_pos -= 7;
                     } if ((grid[i].tile_pos) < 0) {
                         grid[i].tile_pos = 48;
+                        let rotVal = Math.floor((Math.random() * 4) + 1);
+                        if (rotVal === 1) {
+                            grid[i].tile_orientation = 'zero';
+                        }
+                        if (rotVal === 2) {
+                            grid[i].tile_orientation = 'ninety';
+                        }
+                        if (rotVal === 3) {
+                            grid[i].tile_orientation = 'oneEight';
+                        }
+                        if (rotVal === 4) {
+                            grid[i].tile_orientation = 'twoSeven';
+                        }
                     }
                 }
                 console.log('at end', grid);
@@ -225,6 +381,19 @@ function GameBoard() {
                         grid[i].tile_pos -= 1;
                     } if (grid[i].tile_pos < 0) {
                         grid[i].tile_pos = 6;
+                        let rotVal = Math.floor((Math.random() * 4) + 1);
+                        if (rotVal === 1) {
+                            grid[i].tile_orientation = 'zero';
+                        }
+                        if (rotVal === 2) {
+                            grid[i].tile_orientation = 'ninety';
+                        }
+                        if (rotVal === 3) {
+                            grid[i].tile_orientation = 'oneEight';
+                        }
+                        if (rotVal === 4) {
+                            grid[i].tile_orientation = 'twoSeven';
+                        }
                     }
                 }
                 console.log('at end 1R', grid);
@@ -240,6 +409,19 @@ function GameBoard() {
                         grid[i].tile_pos += 1;
                     } if (grid[i].tile_pos > 6) {
                         grid[i].tile_pos = 0;
+                        let rotVal = Math.floor((Math.random() * 4) + 1);
+                        if (rotVal === 1) {
+                            grid[i].tile_orientation = 'zero';
+                        }
+                        if (rotVal === 2) {
+                            grid[i].tile_orientation = 'ninety';
+                        }
+                        if (rotVal === 3) {
+                            grid[i].tile_orientation = 'oneEight';
+                        }
+                        if (rotVal === 4) {
+                            grid[i].tile_orientation = 'twoSeven';
+                        }
                     }
                 }
                 console.log('at end 1R', grid);
@@ -255,6 +437,19 @@ function GameBoard() {
                         grid[i].tile_pos -= 1;
                     } if (grid[i].tile_pos < 7) {
                         grid[i].tile_pos = 13;
+                        let rotVal = Math.floor((Math.random() * 4) + 1);
+                        if (rotVal === 1) {
+                            grid[i].tile_orientation = 'zero';
+                        }
+                        if (rotVal === 2) {
+                            grid[i].tile_orientation = 'ninety';
+                        }
+                        if (rotVal === 3) {
+                            grid[i].tile_orientation = 'oneEight';
+                        }
+                        if (rotVal === 4) {
+                            grid[i].tile_orientation = 'twoSeven';
+                        }
                     }
                 }
                 console.log('at end 1R', grid);
@@ -270,6 +465,19 @@ function GameBoard() {
                         grid[i].tile_pos += 1;
                     } if (grid[i].tile_pos > 13) {
                         grid[i].tile_pos = 7;
+                        let rotVal = Math.floor((Math.random() * 4) + 1);
+                        if (rotVal === 1) {
+                            grid[i].tile_orientation = 'zero';
+                        }
+                        if (rotVal === 2) {
+                            grid[i].tile_orientation = 'ninety';
+                        }
+                        if (rotVal === 3) {
+                            grid[i].tile_orientation = 'oneEight';
+                        }
+                        if (rotVal === 4) {
+                            grid[i].tile_orientation = 'twoSeven';
+                        }
                     }
                 }
                 console.log('at end 1R', grid);
@@ -285,6 +493,19 @@ function GameBoard() {
                         grid[i].tile_pos -= 1;
                     } if (grid[i].tile_pos < 14) {
                         grid[i].tile_pos = 20;
+                        let rotVal = Math.floor((Math.random() * 4) + 1);
+                        if (rotVal === 1) {
+                            grid[i].tile_orientation = 'zero';
+                        }
+                        if (rotVal === 2) {
+                            grid[i].tile_orientation = 'ninety';
+                        }
+                        if (rotVal === 3) {
+                            grid[i].tile_orientation = 'oneEight';
+                        }
+                        if (rotVal === 4) {
+                            grid[i].tile_orientation = 'twoSeven';
+                        }
                     }
                 }
                 console.log('at end 1R', grid);
@@ -300,6 +521,19 @@ function GameBoard() {
                         grid[i].tile_pos += 1;
                     } if (grid[i].tile_pos > 20) {
                         grid[i].tile_pos = 14;
+                        let rotVal = Math.floor((Math.random() * 4) + 1);
+                        if (rotVal === 1) {
+                            grid[i].tile_orientation = 'zero';
+                        }
+                        if (rotVal === 2) {
+                            grid[i].tile_orientation = 'ninety';
+                        }
+                        if (rotVal === 3) {
+                            grid[i].tile_orientation = 'oneEight';
+                        }
+                        if (rotVal === 4) {
+                            grid[i].tile_orientation = 'twoSeven';
+                        }
                     }
                 }
                 console.log('at end 1R', grid);
@@ -315,6 +549,19 @@ function GameBoard() {
                         grid[i].tile_pos -= 1;
                     } if (grid[i].tile_pos < 28) {
                         grid[i].tile_pos = 34;
+                        let rotVal = Math.floor((Math.random() * 4) + 1);
+                        if (rotVal === 1) {
+                            grid[i].tile_orientation = 'zero';
+                        }
+                        if (rotVal === 2) {
+                            grid[i].tile_orientation = 'ninety';
+                        }
+                        if (rotVal === 3) {
+                            grid[i].tile_orientation = 'oneEight';
+                        }
+                        if (rotVal === 4) {
+                            grid[i].tile_orientation = 'twoSeven';
+                        }
                     }
                 }
                 console.log('at end 1R', grid);
@@ -330,6 +577,19 @@ function GameBoard() {
                         grid[i].tile_pos += 1;
                     } if (grid[i].tile_pos > 34) {
                         grid[i].tile_pos = 28;
+                        let rotVal = Math.floor((Math.random() * 4) + 1);
+                        if (rotVal === 1) {
+                            grid[i].tile_orientation = 'zero';
+                        }
+                        if (rotVal === 2) {
+                            grid[i].tile_orientation = 'ninety';
+                        }
+                        if (rotVal === 3) {
+                            grid[i].tile_orientation = 'oneEight';
+                        }
+                        if (rotVal === 4) {
+                            grid[i].tile_orientation = 'twoSeven';
+                        }
                     }
                 }
                 console.log('at end 1R', grid);
@@ -345,6 +605,19 @@ function GameBoard() {
                         grid[i].tile_pos -= 1;
                     } if (grid[i].tile_pos < 35) {
                         grid[i].tile_pos = 41;
+                        let rotVal = Math.floor((Math.random() * 4) + 1);
+                        if (rotVal === 1) {
+                            grid[i].tile_orientation = 'zero';
+                        }
+                        if (rotVal === 2) {
+                            grid[i].tile_orientation = 'ninety';
+                        }
+                        if (rotVal === 3) {
+                            grid[i].tile_orientation = 'oneEight';
+                        }
+                        if (rotVal === 4) {
+                            grid[i].tile_orientation = 'twoSeven';
+                        }
                     }
                 }
                 console.log('at end 1R', grid);
@@ -360,6 +633,19 @@ function GameBoard() {
                         grid[i].tile_pos += 1;
                     } if (grid[i].tile_pos > 41) {
                         grid[i].tile_pos = 35;
+                        let rotVal = Math.floor((Math.random() * 4) + 1);
+                        if (rotVal === 1) {
+                            grid[i].tile_orientation = 'zero';
+                        }
+                        if (rotVal === 2) {
+                            grid[i].tile_orientation = 'ninety';
+                        }
+                        if (rotVal === 3) {
+                            grid[i].tile_orientation = 'oneEight';
+                        }
+                        if (rotVal === 4) {
+                            grid[i].tile_orientation = 'twoSeven';
+                        }
                     }
                 }
                 console.log('at end 1R', grid);
@@ -375,6 +661,19 @@ function GameBoard() {
                         grid[i].tile_pos -= 1;
                     } if (grid[i].tile_pos < 42) {
                         grid[i].tile_pos = 48;
+                        let rotVal = Math.floor((Math.random() * 4) + 1);
+                        if (rotVal === 1) {
+                            grid[i].tile_orientation = 'zero';
+                        }
+                        if (rotVal === 2) {
+                            grid[i].tile_orientation = 'ninety';
+                        }
+                        if (rotVal === 3) {
+                            grid[i].tile_orientation = 'oneEight';
+                        }
+                        if (rotVal === 4) {
+                            grid[i].tile_orientation = 'twoSeven';
+                        }
                     }
                 }
                 console.log('at end 1R', grid);
@@ -390,6 +689,19 @@ function GameBoard() {
                         grid[i].tile_pos += 1;
                     } if (grid[i].tile_pos > 48) {
                         grid[i].tile_pos = 42;
+                    let rotVal = Math.floor((Math.random() * 4) + 1);
+                        if (rotVal === 1) {
+                            grid[i].tile_orientation = 'zero';
+                        }
+                        if (rotVal === 2) {
+                            grid[i].tile_orientation = 'ninety';
+                        }
+                        if (rotVal === 3) {
+                            grid[i].tile_orientation = 'oneEight';
+                        }
+                        if (rotVal === 4) {
+                            grid[i].tile_orientation = 'twoSeven';                            
+                        }
                     }
                 }
                 console.log('at end 1R', grid);
@@ -401,7 +713,8 @@ function GameBoard() {
             default:
                 break;
         } // end rowmover
-        
+        // change rotation?  Naw let's leave it for now, could add for the tail ends
+        // PUT the updated tile positions.
 
     }; // end randomizer
 
@@ -421,15 +734,12 @@ function GameBoard() {
             </div>
             {game.length > 0 &&
                 <div className="bear-container">
-                    {grid.map(tile => { // style={tile.tile_orientation} eventually. src/components/GameBoard/Tiles/fork.png
+                    {grid.map(tile => { 
                         return (
                             <div key={tile.tile_pos} >
                                 <div>
                                     <p>{tile.id}</p>
-                                    <br></br>
-                                    <p>{tile.tile_orientation}</p>
                                     <img className={tile.tile_orientation} src={tile.shape_url} />
-
                                 </div>
                             </div>
                         );
@@ -461,6 +771,3 @@ export default GameBoard;
                                                                         {/* <img style={angle} src={tile.shape_url} />
 
 */
-
-// /Users/jdk/eda/tier_3/LangstonsLabyrinth/public/tiles/fork.png
-// /Users/jdk/eda/tier_3/LangstonsLabyrinth/src/components/GameBoard/GameBoard.jsx

@@ -42,3 +42,19 @@ img {
     height: 3em;
 }
 
+.zero {
+            transform: rotate(0deg)        
+      }
+
+.ninety {
+            transform: rotate(90deg)        
+        }
+
+.oneEight {
+            transform: rotate(180deg)
+        }
+
+ 
+.twoSeven {
+            transform: rotate(270deg)
+        } 

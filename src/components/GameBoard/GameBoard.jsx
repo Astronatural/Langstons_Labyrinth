@@ -8,26 +8,6 @@ import './GameBoard.css';
 
 function GameBoard() {
 
-    // rotation styles !!! turns out something is forcing the tiles to stay in original position.  grr.
-    const styles = ({
-
-        zero: {
-            transform: [{ rotate: '0deg' }]
-        },
-
-        ninety: {
-            transform: [{ rotate: '90deg' }]
-        },
-
-        oneEight: {
-            transform: [{ rotate: '180deg' }]
-        },
-
-        twoSeven: {
-            transform: [{ rotate: '270deg' }]
-        }
-    }) // end styles
-
 
     const params = useParams();
     const history = useHistory();
@@ -41,14 +21,16 @@ function GameBoard() {
 
     useEffect(() => { // onchange rerender.
         setGrid([...game]);
+        // probably need game table info in here too.
     }, [game]);
 
     let [grid, setGrid] = useState([...game]);
-
+    let [angle, setAngle] = useState ([...game]);
 
     useEffect(() => { // inital state set
         console.log('params are', params)
         dispatch({ type: "FETCH_GAME", payload: params.id })
+        // make space to load game table info too.
     }, []);
 
 
@@ -450,6 +432,7 @@ function GameBoard() {
         // switch/ case to assign that value to which function to trigger.
         // generate another 2 random numbers --> deal with rotation later, I guess.
         // deal with the PUT later too...
+
     };
 
     function moveCol() {
@@ -497,88 +480,139 @@ function GameBoard() {
     }; // end moveCol
 
 
-        function moveRow() {
-            const rowMover = Math.floor((Math.random() * 12) + 1);
-            switch (rowMover) {
-                case 1:
-                    moveRow1L(grid);
-                    break;
-                case 2:
-                    moveRow1R(grid);
-                    break;
-                case 3:
-                    moveRow2L(grid);
-                    break;
-                case 4:
-                    moveRow2R(grid);
-                    break;
-                case 5:
-                    moveRow3L(grid);
-                    break;
-                case 6:
-                    moveRow3R(grid);
-                    break;
-                case 7:
-                    moveRow5L(grid);
-                    break;
-                case 8:
-                    moveRow5R(grid);
-                    break;
-                case 9:
-                    moveRow6L(grid);
-                    break;
-                case 10:
-                    moveRow6R(grid);
-                    break;
-                case 11:
-                    moveRow7L(grid);
-                    break;
-                case 12:
-                    moveRow7R(grid);
-                    break;
-                default:
-                    break;
-            } 
+    function moveRow() {
+        const rowMover = Math.floor((Math.random() * 12) + 1);
+        switch (rowMover) {
+            case 1:
+                moveRow1L(grid);
+                break;
+            case 2:
+                moveRow1R(grid);
+                break;
+            case 3:
+                moveRow2L(grid);
+                break;
+            case 4:
+                moveRow2R(grid);
+                break;
+            case 5:
+                moveRow3L(grid);
+                break;
+            case 6:
+                moveRow3R(grid);
+                break;
+            case 7:
+                moveRow5L(grid);
+                break;
+            case 8:
+                moveRow5R(grid);
+                break;
+            case 9:
+                moveRow6L(grid);
+                break;
+            case 10:
+                moveRow6R(grid);
+                break;
+            case 11:
+                moveRow7L(grid);
+                break;
+            case 12:
+                moveRow7R(grid);
+                break;
+            default:
+                break;
+        }
     };  // end moveRow
 
+    // function styleSetter(angle) {  //  doesn't like game.tile_orientation
+    //     if (angle.tile_orientation === zero)
+    // const zero = {
+    //     transform: 'rotate(0deg)'
+    // };
+    
+    // const ninety = {
+    //     transform: 'rotate(90deg)'
+    // }; 
+    
+    // const oneEight = {
+    //     transform: 'rotate(180deg)'
+    // }; 
+    
+    // const twoSeven = {
+    //     transform: 'rotate(270deg)'
+    // };
+    // }
 
-            return (
-                <>
-                    {/* <p>{game.name}</p> game does not contain name, this is game_tiles */}
-                    <div className="button-container">
-                        
+    const zero = {
+        transform: 'rotate(0deg)'
+    };
 
-                        <button onClick={() => randomizer()}>End Turn</button>
+    const ninety = {
+        transform: 'rotate(90deg)'
+    };
 
-                        <img className="token" src={Boss} alt="red skull" />
-                        <img className="token" src={Player} alt="blue shield" />
+    const oneEight = {
+        transform: 'rotate(180deg)'
+    };
 
-                    </div>
-                    {game.length > 0 &&
-                        <div className="bear-container">
-                            {grid.map(tile => { // style={tile.tile_orientation} eventually. src/components/GameBoard/Tiles/fork.png
-                                return (
-                                    <div key={tile.tile_pos} >
-                                        <div>
-                                            <p>{tile.id}</p>
-                                            <br></br>
-                                            <img style={{ transform: [{ rotate: '270deg' }] }} src={tile.shape_url} />
-                                        </div>
-                                    </div>
-                                );
-                            })}
-                        </div>
-                    }
-                    {/* <button>Save and Exit</button> */}
-                </>
-            )
-        };
+    const twoSeven = {
+        transform: 'rotate(270deg)'
+    };
+
+    return (
+        <>
+            {/* <p>{game.name}</p> game does not contain name, this is game_tiles */}
+            {/* <h1 value={gameTable.turn}>{turnCount.turn}</h1> */}
+            <div className="button-container">
 
 
-        export default GameBoard;
+                <button onClick={() => randomizer()}>End Turn</button>
+
+                <img className="token" src={Boss} alt="red skull" />
+                <img className="token" src={Player} alt="blue shield" />
+
+            </div>
+            {game.length > 0 &&
+                <div className="bear-container">
+                    {grid.map(tile => { // style={tile.tile_orientation} eventually. src/components/GameBoard/Tiles/fork.png
+                        return (
+                            <div key={tile.tile_pos} >
+                                <div>
+                                    <p>{tile.id}</p>
+                                    <br></br>
+                                    <p>{tile.tile_orientation}</p>
+                                    <img className={tile.tile_orientation} src={tile.shape_url} />
+
+                                </div>
+                            </div>
+                        );
+                    })}
+                </div>
+            }
+            {/* <button>Save and Exit</button> */}
+        </>
+    )
+};
+
+
+export default GameBoard;
 
 /*scraps
+<img style={{transform: 'rotate(90deg)'}} src={tile.shape_url} />  <-- this is the correct syntax.
   <img style={styles.tile.tile_orientation} src={tile.shape_url} />
+  <img style={"transform: rotate 180deg;"} src={tile.shape_url} />
+<img style={{transform: [{rotate: '90deg' }]}} src={tile.shape_url} />
+{{marginRight: spacing + 'em'}
+<img style={{transformRotate: 180}} src={tile.shape_url} />
+<img style={{transform: 'rotate + 180deg'}} src={tile.shape_url} />
+<img style={{tile: 'tile.tile_orientation'}} src={tile.shape_url} />
+                                    {/* <img style={tile.tile_orientation} src={tile.shape_url} /> 
+{/* <img style={zero} src={tile.shape_url} />
+                                    <img style={ninety} src={tile.shape_url} />
+                                    <img style={oneEight} src={tile.shape_url} />
+                                    <img style={twoSeven} src={tile.shape_url} /> 
+                                                                        {/* <img style={angle} src={tile.shape_url} />
+
 */
 
 // /Users/jdk/eda/tier_3/LangstonsLabyrinth/public/tiles/fork.png

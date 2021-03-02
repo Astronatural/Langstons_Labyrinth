@@ -49,24 +49,14 @@ function* gameBoardSaga(action) {
 function* updateGameSaga(action) {
     try{
         console.log('in updater', (action.payload[1]).game_id);  //  looks good
-
-        const game = yield axios.put(`/api/game/${(action.payload[1]).game_id}`, {payload: action.payload});  // <-- problem here {payload: action.payload.categoryId}
-        yield put({ type: 'UPDATE_GAMEBOARD', payload: game.data }); 
+        const gameId = (action.payload[1]).game_id;
+        yield axios.put(`/api/game/${gameId}`, {payload: action.payload});  // <-- problem here {payload: action.payload.categoryId}
+        // yield put({ type: 'UPDATE_GAMEBOARD', payload: action.payload  }); // tried payload: game.data
     } catch (error) {
         console.log("game update failed", error);
     }
 }
 
-/*
-function* setCategorySaga(action) {
-    try {
-        yield axios.put(`api/favorite/category/${action.payload.gifId}`, {payload: action.payload.categoryId})
-        yield put({ type: 'FETCH_FAVORITES' });
-    } catch (error) {
-        console.log('Error in add', error);
-    };
-};
-*/
 
 function* addGameSaga() {
     yield takeLatest('MAKE_GAME', gameSaga), // makes new game

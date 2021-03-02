@@ -716,6 +716,8 @@ function GameBoard() {
         // PUT the updated tile positions.
         console.log('sending maze move', grid);
         dispatch({ type: 'MOVE_MAZE', payload: grid})  // looks good
+        //  dispatch({ type: "FETCH_GAME", payload: params.id })  // perhaps needed, once update works.
+
 
     }; // end randomizer
 

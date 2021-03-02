@@ -104,9 +104,9 @@ router.get(`/:id`, (req, res) => {
 
 
 router.put(`/:id`, async (req, res) => {
-    const mazeToUpdate = req.params.game_id;
+    const mazeToUpdate = req.params.id;
     const update = req.body.payload;
-    console.log('update router, game & update', mazeToUpdate, update);  // mazeToUpdate undefined, update correct.
+    console.log('update router, game & update', mazeToUpdate, update);  // mazeToUpdate correct, update correct.
     const queryText = `UPDATE "game_tiles" SET "tile_pos" = $1, "tile_orientation"= $2
                     WHERE "id" = $3 AND "game_id" = $4;`;
     try {
@@ -131,14 +131,14 @@ module.exports = router;
 
 // Scraps
 
-            // removed from below line 27 for redundancy.
-                // handle the tiles, first link it to new game.  If I insert the game_id #= to total_tiles that would get me the right #.
-    //         const insertGameTileIDQuery = `  // this becomes redundant if I am going to the insert it 9 more times.
-    //   INSERT INTO "games_tiles" ("game_id")
-    //   VALUES  ($1);
-    //   `
-    //         pool.query(insertGameTileIDQuery, [createdGameId]).then(result => {
-    //             // then figure out how to have game_tiles spawn all that info.
+ // removed from below line 27 for redundancy.
+     // handle the tiles, first link it to new game.  If I insert the game_id #= to total_tiles that would get me the right #.
+//         const insertGameTileIDQuery = `  // this becomes redundant if I am going to the insert it 9 more times.
+//   INSERT INTO "games_tiles" ("game_id")
+//   VALUES  ($1);
+//   `
+//         pool.query(insertGameTileIDQuery, [createdGameId]).then(result => {
+//             // then figure out how to have game_tiles spawn all that info.
 
 // const query = `SELECT * FROM "game" WHERE "id"=$1;`
 // pool.query(query, [gameOn])

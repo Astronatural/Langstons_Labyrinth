@@ -714,7 +714,8 @@ function GameBoard() {
                 break;
         } // end rowmover
         // PUT the updated tile positions.
-        dispatch({ type: })
+        console.log('sending maze move', grid);
+        dispatch({ type: 'MOVE_MAZE', payload: grid})  // looks good
 
     }; // end randomizer
 

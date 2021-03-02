@@ -29,6 +29,7 @@ Distpatches:
     MOVE_BOSS  //  update the Boss token
     MOVE_MAZE  //  update the labyrinth position.
     SET_GAMES // trigger for the game store.
+    GAME_INFO // get turn count, PC and Boss token position
 
 Remeber:
     set up the readMe, eventually.

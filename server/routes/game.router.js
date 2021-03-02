@@ -90,17 +90,40 @@ router.delete(`/:id`, (req, res) => {
 
 
 router.get(`/:id`, (req, res) => {
-    console.log('game router', req.params.id);  // is the correct id
+    // console.log('game router', req.params.id);  // is the correct id
     const gameOn = req.params.id;
     const gameTilesQuery = `SELECT * FROM "game_tiles" WHERE "game_id"=$1;`
     pool.query(gameTilesQuery, [gameOn])
         .then(result => {
-            console.log('game_tiles', result.rows); // should be game_tiles.
+            // console.log('game_tiles', result.rows); // looks good.
             res.send(result.rows);
         }).catch(err => {
             console.log('Could not load game_tiles')
         });
 });
+
+
+router.put(`/:id`, async (req, res) => {
+    const mazeToUpdate = req.params.game_id;
+    const update = req.body.payload;
+    console.log('update router, game & update', mazeToUpdate, update);  // mazeToUpdate undefined, update correct.
+    const queryText = `UPDATE "game_tiles" SET "tile_pos" = $1, "tile_orientation"= $2
+                    WHERE "id" = $3 AND "game_id" = $4;`;
+    try {
+    var i = 0;
+    while (i < 49) {
+        await pool.query(queryText, [update.tile_pos, update.tile_orientation, update.id, mazeToUpdate])
+        i++;
+    };
+    res.sendStatus(201);
+} // end try
+catch ( err ) {
+    // catch 
+    console.log(err);
+    res.sendStatus(500)
+}
+}); // end mazeUpdate.
+
 
 
 module.exports = router;

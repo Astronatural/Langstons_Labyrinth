@@ -45,12 +45,24 @@ function* gameBoardSaga(action) {
     }
 }
 
+// updates the movement of the gameboard.  // no idea if this is right, gettin too tired.
+function* updateGameSaga(action) {
+    try{
+        console.log('in updater',  action.payload);
+        const game = yield axios.put('/api/game', action.payload);
+        yield put({ type: 'UPDATE_GAMEBOARD', payload: game.data }); 
+    } catch (error) {
+        console.log("game update failed", error);
+    }
+}
+
 
 function* addGameSaga() {
-    yield takeLatest('MAKE_GAME', gameSaga),
+    yield takeLatest('MAKE_GAME', gameSaga), // makes new game
         yield takeEvery('FETCH_GAMES', fetchGameSaga),
         yield takeEvery('DELETE_GAME', deleteGameSaga),
-        yield takeLatest('FETCH_GAME', gameBoardSaga)
+        yield takeLatest('FETCH_GAME', gameBoardSaga), // gets the game_tiles
+        yield takeEvery('MOVE_MAZE', updateGameSaga) 
 }
 
 export default addGameSaga;

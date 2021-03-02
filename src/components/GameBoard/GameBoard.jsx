@@ -689,7 +689,7 @@ function GameBoard() {
                         grid[i].tile_pos += 1;
                     } if (grid[i].tile_pos > 48) {
                         grid[i].tile_pos = 42;
-                    let rotVal = Math.floor((Math.random() * 4) + 1);
+                        let rotVal = Math.floor((Math.random() * 4) + 1);
                         if (rotVal === 1) {
                             grid[i].tile_orientation = 'zero';
                         }
@@ -700,7 +700,7 @@ function GameBoard() {
                             grid[i].tile_orientation = 'oneEight';
                         }
                         if (rotVal === 4) {
-                            grid[i].tile_orientation = 'twoSeven';                            
+                            grid[i].tile_orientation = 'twoSeven';
                         }
                     }
                 }
@@ -713,8 +713,8 @@ function GameBoard() {
             default:
                 break;
         } // end rowmover
-        // change rotation?  Naw let's leave it for now, could add for the tail ends
         // PUT the updated tile positions.
+        dispatch({ type: })
 
     }; // end randomizer
 
@@ -734,7 +734,7 @@ function GameBoard() {
             </div>
             {game.length > 0 &&
                 <div className="bear-container">
-                    {grid.map(tile => { 
+                    {grid.map(tile => {
                         return (
                             <div key={tile.tile_pos} >
                                 <div>
@@ -763,11 +763,11 @@ export default GameBoard;
 <img style={{transformRotate: 180}} src={tile.shape_url} />
 <img style={{transform: 'rotate + 180deg'}} src={tile.shape_url} />
 <img style={{tile: 'tile.tile_orientation'}} src={tile.shape_url} />
-                                    {/* <img style={tile.tile_orientation} src={tile.shape_url} /> 
+                                    {/* <img style={tile.tile_orientation} src={tile.shape_url} />
 {/* <img style={zero} src={tile.shape_url} />
                                     <img style={ninety} src={tile.shape_url} />
                                     <img style={oneEight} src={tile.shape_url} />
-                                    <img style={twoSeven} src={tile.shape_url} /> 
+                                    <img style={twoSeven} src={tile.shape_url} />
                                                                         {/* <img style={angle} src={tile.shape_url} />
 
 */

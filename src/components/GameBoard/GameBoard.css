@@ -1,14 +1,14 @@
 .button-container {
     display: grid;
     grid-template-areas:    'zone1 zone2 zone3 zone4 zone5 zone6';
-    grid-gap: .4em;
+    grid-gap: .5em;
     align-content: center;
     background-color: rgb(111, 106, 116);
     padding: .3em;
 }
 
 .grid-container {
-    display: grid;
+    display: inline-grid;
     grid-template-areas:    'zone1 zone2 zone3 zone4 zone5 zone6 zone7';
     grid-gap: .1em;
     align-content: center;

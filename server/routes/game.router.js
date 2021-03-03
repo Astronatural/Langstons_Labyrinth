@@ -142,3 +142,17 @@ module.exports = router;
 
 // const query = `SELECT * FROM "game" WHERE "id"=$1;`
 // pool.query(query, [gameOn])
+
+// og get, want to update to get game info too
+// router.get(`/:id`, (req, res) => {
+//     // console.log('game router', req.params.id);  // is the correct id
+//     const gameOn = req.params.id;
+//     const gameTilesQuery = `SELECT * FROM "game_tiles" WHERE "game_id"=$1;`
+//     pool.query(gameTilesQuery, [gameOn])
+//         .then(result => {
+//             // console.log('game_tiles', result.rows); // looks good.
+//             res.send(result.rows);
+//         }).catch(err => {
+//             console.log('Could not load game_tiles')
+//         });
+// });

@@ -24,7 +24,17 @@
     color:rgb(148, 94, 14);
     width: 6em;
     height: 6em;
+    /* position: relative */
 }
+
+
+/* .grid-container > div img {
+    position: absolute;
+} */
+
+/* .grid-container > div img.token  {
+    right: 0px;
+} */
 
 button {
     margin: .3em;

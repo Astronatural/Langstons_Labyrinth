@@ -728,8 +728,8 @@ function GameBoard() {
 
     return (
         <>
-            {/* <p>{game.name}</p> game does not contain name, this is game_tiles */}
-            {/* <h1 value={gameTable.turn}>{turnCount.turn}</h1> */}
+            {/* <h1>{game.name}</h1> game does not contain name, this is game_tiles */}
+            {/* <h2 value={gameTable.turn}>{turnCount.turn}</h2> */}
             <div className="button-container">
 
 
@@ -740,14 +740,12 @@ function GameBoard() {
 
             </div>
             {game.length > 0 &&
-                <div className="bear-container">
+                <div className="grid-container">
                     {grid.map(tile => {
                         return (
-                            <div key={tile.id} >
-                                <div>
-                                    <p>{tile.id}</p>
-                                    <img className={tile.tile_orientation} src={tile.shape_url} />
-                                </div>
+                            <div key={tile.id} className="">
+                                  <p className="tileTitle">{tile.id}</p>
+                                   <img className={tile.tile_orientation} src={tile.shape_url}/>
                             </div>
                         );
                     })}
@@ -760,21 +758,3 @@ function GameBoard() {
 
 
 export default GameBoard;
-
-/*scraps
-<img style={{transform: 'rotate(90deg)'}} src={tile.shape_url} />  <-- this is the correct syntax.
-  <img style={styles.tile.tile_orientation} src={tile.shape_url} />
-  <img style={"transform: rotate 180deg;"} src={tile.shape_url} />
-<img style={{transform: [{rotate: '90deg' }]}} src={tile.shape_url} />
-{{marginRight: spacing + 'em'}
-<img style={{transformRotate: 180}} src={tile.shape_url} />
-<img style={{transform: 'rotate + 180deg'}} src={tile.shape_url} />
-<img style={{tile: 'tile.tile_orientation'}} src={tile.shape_url} />
-                                    {/* <img style={tile.tile_orientation} src={tile.shape_url} />
-{/* <img style={zero} src={tile.shape_url} />
-                                    <img style={ninety} src={tile.shape_url} />
-                                    <img style={oneEight} src={tile.shape_url} />
-                                    <img style={twoSeven} src={tile.shape_url} />
-                                                                        {/* <img style={angle} src={tile.shape_url} />
-
-*/

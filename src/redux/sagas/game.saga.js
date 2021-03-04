@@ -28,7 +28,7 @@ function* fetchGameSaga() {
 function* deleteGameSaga(action) {
     try {
         yield axios.delete(`/api/game/${action.payload}`);
-       yield put({ type: 'FETCH_GAMES' });  // right, I want to reset the game list?        
+        yield put({ type: 'FETCH_GAMES' });  // right, I want to reset the game list?        
     } catch {
         console.log('delete error id:', action.payload);
 
@@ -39,6 +39,7 @@ function* gameBoardSaga(action) {
     try {
         const game = yield axios.get(`/api/game/${action.payload}`); // , action.payload
         yield put({ type: 'SET_GAMEBOARD', payload: game.data }); // ??
+        yield put({ type: 'GAME_INFO', payload: action.payload})
     } catch (error) {
         console.log('game get request failed', error);
     }
@@ -46,24 +47,34 @@ function* gameBoardSaga(action) {
 
 // updates the movement of the gameboard.  // no idea if this is right, gettin too tired.
 function* updateGameSaga(action) {
-    try{
+    try {
         console.log('in updater', (action.payload[1]).game_id);  //  looks good
         const gameId = (action.payload[1]).game_id;
-        yield axios.put(`/api/game/${gameId}`, {payload: action.payload});  
+        yield axios.put(`/api/game/${gameId}`, { payload: action.payload });
         // yield put({ type: 'UPDATE_GAMEBOARD', payload: action.payload  }); // tried payload: game.data
     } catch (error) {
         console.log("game update failed", error);
     }
 }
 
-function* infoSaga (action) {
+function* infoSaga(action) {
     try {
         console.log('in game info saga', action.payload);  // game.id
         const game = yield axios.get(`/api/info/${action.payload}`); // , action.payload
-        yield put({ type: 'SET_INFO', payload: game.data }); 
+        yield put({ type: 'SET_INFO', payload: game.data });
         console.log('info', game.data); // now is just 1, wtf!!!!! and now it is back, wTFWTF!
     } catch (error) {
         console.log('game info request failed', error);
+    }
+}
+
+function* addTurnSaga(action) {
+    try {
+        console.log('in add turn saga', action.payload);  // game.id
+        yield axios.put(`/api/info/${action.payload}`);  //  want to see if it works without reducer, const turn = yield 
+        yield put({ type: 'GAME_INFO', payload: action.payload });
+    } catch (error) {
+        console.log('add turn request failed', error);
     }
 }
 
@@ -73,8 +84,9 @@ function* addGameSaga() {
         yield takeEvery('FETCH_GAMES', fetchGameSaga),
         yield takeEvery('DELETE_GAME', deleteGameSaga),
         yield takeLatest('FETCH_GAME', gameBoardSaga), // gets the game_tiles
-        yield takeEvery('MOVE_MAZE', updateGameSaga) 
-    yield takeLatest('GAME_INFO', infoSaga) // gets the game DB info 
+        yield takeEvery('MOVE_MAZE', updateGameSaga)
+    yield takeLatest('GAME_INFO', infoSaga), // gets the game DB info 
+        yield takeLatest('ADD_TURN', addTurnSaga)
 }
 
 export default addGameSaga;

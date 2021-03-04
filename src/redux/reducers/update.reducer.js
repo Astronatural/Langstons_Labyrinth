@@ -1,8 +1,8 @@
 const updateReducer = (state = [], action) => {   //  tried; {} = game.map is not a function. [], [{}] = game undefined.
     switch (action.type) {
         case 'SET_INFO':
-            console.log(state, action.payload);  // its here... state is game.id, payload is [{...}] now state is [] wtf!
-            return state, action.payload; // tried state, [state], [...state], but it's the payload I want.
+            console.log( action.payload);  // its here... state is game.id, payload is [{...}] now state is [] wtf!
+            return  action.payload; // tried state, [state], [...state], but it's the payload I want.
         // case 'SET_GAMES':
         //     console.log(action.payload);
         //     return action.payload;

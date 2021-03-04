@@ -21,17 +21,18 @@ function GameBoard() {
 
     useEffect(() => { // onchange rerender.
         setGrid([...game]);
-        setData([info]);  // tried [...info], [info], [{info}], { info }, info
+        // setData([info]);  // tried [...info], [info], [{info}], { info }, info
         console.log('in 2nd gb useState', info[0]);  // it makes it here as [{...}], when the second SET_INFO was in.
-    }, [game, info]);
+        // dispatch({ type: 'GAME_INFO', payload: params.id });
+    }, [game]);
 
     let [grid, setGrid] = useState([...game]);
-    let [data, setData] = useState([info]);  // tried [info], [...info] (not iterable), {info}.
+    // let [data, setData] = useState([info]);  // tried [info], [...info] (not iterable), {info}.
 
     useEffect(() => { // inital state set
         dispatch({ type: "FETCH_GAME", payload: params.id });
         dispatch({ type: 'GAME_INFO', payload: params.id });
-        // dispatch({ type: "SET_INFO", payload: params.id, });  // tried payload: params.id, payload: action.payload, payload: game.data
+       // dispatch({ type: "SET_INFO", payload: params.id, });  // tried payload: params.id, payload: action.payload, payload: game.data
         console.log('in init uS gb', info);  // empty array? refills on refresh!!! [0] is undefined.
     }, []);  // loop if anything here.
 
@@ -58,13 +59,14 @@ function GameBoard() {
         newGrid = shiftColumn(newGrid, columnIndex, columnDirection);
         console.log(newGrid);
         setGrid([...newGrid]);
-        dispatch({ type: 'MOVE_MAZE', payload: newGrid })  // looks good
-        // dispatch({ type: 'GAME_INFO', payload: game.game_id }); // maybe game.id or game_id // doesn't help on refresh
+        dispatch({ type: 'MOVE_MAZE', payload: [...newGrid] }) 
+        // increase the turnCount and dispatch it.
+        dispatch({ type: "ADD_TURN", payload: params.id});  // Do I have access here?  don;t do nothing.
 
+        // dispatch({ type: 'GAME_INFO', payload: game.game_id }); // maybe game.id or game_id // doesn't help on refresh
         // rid.sort(function (a, b) {
         //     return a.tile_pos - b.tile_pos;
         // })
-
         // dispatch({ type: "FETCH_GAME", payload: params.id })  // perhaps needed, once update works.
 
     }; // end randomizer
@@ -75,16 +77,18 @@ function GameBoard() {
 
     return (
         <>
-        {info.length > 0 &&
-        <>
-            <h1>{info[0].name} hello world</h1>
-            <h2>{info[0].turn}</h2>
-            <h1>{data[0].name} hello world</h1>
-            <h2>{data[0].turn}</h2>
-            </>
-}
+     
             <div className="button-container">
                 <button onClick={() => randomizer(grid)}>End Turn</button>
+               
+                {info.length > 0 &&
+                    <>
+                        <h1>{info[0].name}</h1>
+                        <h1>Turn #: {info[0].turn}</h1>
+                        {/* <h1>{data[0].name}</h1>
+                        <h2 value={turnCount}>{data[0].turn}</h2> */}
+                    </>
+                }
 
                 <img className="token" src={Boss} alt="red skull" />
                 <img className="token" src={Player} alt="blue shield" />

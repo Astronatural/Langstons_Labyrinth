@@ -16,11 +16,20 @@ router.get(`/:id`, (req, res) => {
             console.log('Could not load game info')
         });
 });
-/**
- * POST route template
- */
-router.post('/', (req, res) => {
-    // POST route code here
-});
+
+
+router.put(`/:id`, async (req, res) => {
+    const mazeToUpdate = req.params.id;
+    console.log('update turn', mazeToUpdate);  // mazeToUpdate correct
+     try {
+            const queryText = `UPDATE "game" SET "turn" = "turn" +1 WHERE "id" = $1;`;
+            await pool.query(queryText, [ mazeToUpdate])
+        res.sendStatus(201);
+    } // end try
+    catch (err) {
+        console.log(err);
+        res.sendStatus(500)
+    }
+}); // end turnUpdate.
 
 module.exports = router;

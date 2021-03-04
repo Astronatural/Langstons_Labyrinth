@@ -21,7 +21,7 @@ function GameBoard() {
 
     useEffect(() => { // onchange rerender.
         setGrid([...game]);
-        setData([...info]);  // tried [...info], [info], [{info}], { info }, info
+        setData([info]);  // tried [...info], [info], [{info}], { info }, info
         console.log('in 2nd gb useState', info[0]);  // it makes it here as [{...}], when the second SET_INFO was in.
     }, [game, info]);
 
@@ -30,10 +30,10 @@ function GameBoard() {
 
     useEffect(() => { // inital state set
         dispatch({ type: "FETCH_GAME", payload: params.id });
-        setData([info]);
-        // dispatch({ type: "SET_INFO", payload: params.id });  // tried payload: params.id, payload: action.payload, payload: game.data
+        dispatch({ type: 'GAME_INFO', payload: params.id });
+        // dispatch({ type: "SET_INFO", payload: params.id, });  // tried payload: params.id, payload: action.payload, payload: game.data
         console.log('in init uS gb', info);  // empty array? refills on refresh!!! [0] is undefined.
-    }, []);
+    }, []);  // loop if anything here.
 
 
     // new randomizer + refactor
@@ -59,6 +59,8 @@ function GameBoard() {
         console.log(newGrid);
         setGrid([...newGrid]);
         dispatch({ type: 'MOVE_MAZE', payload: newGrid })  // looks good
+        // dispatch({ type: 'GAME_INFO', payload: game.game_id }); // maybe game.id or game_id // doesn't help on refresh
+
         // rid.sort(function (a, b) {
         //     return a.tile_pos - b.tile_pos;
         // })

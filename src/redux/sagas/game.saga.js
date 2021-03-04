@@ -74,7 +74,7 @@ function* addGameSaga() {
         yield takeEvery('DELETE_GAME', deleteGameSaga),
         yield takeLatest('FETCH_GAME', gameBoardSaga), // gets the game_tiles
         yield takeEvery('MOVE_MAZE', updateGameSaga) 
-    yield takeLatest('GAME_INFO', infoSaga) // gets the game DB info
+    yield takeLatest('GAME_INFO', infoSaga) // gets the game DB info 
 }
 
 export default addGameSaga;

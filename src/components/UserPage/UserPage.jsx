@@ -33,6 +33,7 @@ function UserPage() {
   const loader = (game) => {
    console.log('loader activate', game.id);
     dispatch({ type: 'FETCH_GAME', payload: game.id });
+    dispatch({ type: 'GAME_INFO', payload: game.id });
       history.push(`/game/${game.id}`);
 };
 
@@ -60,7 +61,7 @@ function UserPage() {
           <tbody>
             {game.map(game => {
               return (
-                <tr key={game.id} >
+                <tr className='gameList' key={game.id} >
                   <td><button onClick={() => loader(game)}>Load Labyrinth</button></td>
                   <td>{game.name}</td><td>{game.turn}</td>
                   <td><button onClick={() => deleter(game)}>Delete Labyrinth</button></td>

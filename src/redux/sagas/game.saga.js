@@ -37,7 +37,6 @@ function* deleteGameSaga(action) {
 // saga for geting a game to the gameboard.
 function* gameBoardSaga(action) {
     try {
-        console.log('in fetch game saga', action.payload);
         const game = yield axios.get(`/api/game/${action.payload}`); // , action.payload
         yield put({ type: 'SET_GAMEBOARD', payload: game.data }); // ??
     } catch (error) {
@@ -57,6 +56,17 @@ function* updateGameSaga(action) {
     }
 }
 
+function* infoSaga (action) {
+    try {
+        console.log('in game info saga', action.payload);  // looks good!
+        const game = yield axios.get(`/api/info/${action.payload}`); // , action.payload
+        yield put({ type: 'SET_INFO', payload: game.data }); // ??
+        console.log('info', game.data); // correct
+    } catch (error) {
+        console.log('game info request failed', error);
+    }
+}
+
 
 function* addGameSaga() {
     yield takeLatest('MAKE_GAME', gameSaga), // makes new game
@@ -64,6 +74,7 @@ function* addGameSaga() {
         yield takeEvery('DELETE_GAME', deleteGameSaga),
         yield takeLatest('FETCH_GAME', gameBoardSaga), // gets the game_tiles
         yield takeEvery('MOVE_MAZE', updateGameSaga) 
+    yield takeLatest('GAME_INFO', infoSaga) // gets the game DB info
 }
 
 export default addGameSaga;

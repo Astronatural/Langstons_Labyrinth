@@ -15,19 +15,21 @@ function GameBoard() {
     const dispatch = useDispatch();
     const game = useSelector((store) => store.gameReducer);
     const user = useSelector((store) => store.user);
+    const info = useSelector((store) => store.updateReducer);
 
 
     useEffect(() => { // onchange rerender.
         setGrid([...game]);
-        // probably need game table info in here too.
+        setData([...info]);
     }, [game]);
 
     let [grid, setGrid] = useState([...game]);
+    let [data, setData] = useState({info})
 
     useEffect(() => { // inital state set
-        console.log('params are', params)
         dispatch({ type: "FETCH_GAME", payload: params.id })
-        // make space to load game table info too.
+        dispatch({ type: "SET_INFO", payload: params.id })
+        console.log(info);  // empty array? refills on refresh!!!
     }, []);
 
 
@@ -37,15 +39,15 @@ function GameBoard() {
         const gridSize = grid.length;
         let newGrid = grid;
         const rows = Math.ceil(Math.sqrt(gridSize));
-        const cols = Math.ceil(Math.sqrt(gridSize));
+        // const cols = Math.ceil(Math.sqrt(gridSize));  // not used ATM
         // select a random row
         // generate random number 0-(cols) for which row or column to move.  Maybe this can just run twice without the double up of pos?
         const rowIndex = Math.floor((Math.random() * rows) + 0);
         const rowDirection = Math.random() > 0.5 ? 'left' : 'right';
-        console.log('moving row',  rowIndex, 'in', rowDirection);
+        console.log('moving row', rowIndex, 'in', rowDirection);
         newGrid = shiftRow(newGrid, rowIndex, rowDirection);
         // newGrid = shiftRow(newGrid, 6, 'left');
-        
+
         // random column
         const columnIndex = Math.floor((Math.random() * rows) + 0);
         const columnDirection = Math.random() > 0.5 ? 'up' : 'down';
@@ -59,7 +61,7 @@ function GameBoard() {
         // })
 
         // dispatch({ type: "FETCH_GAME", payload: params.id })  // perhaps needed, once update works.
-        
+
     }; // end randomizer
 
 
@@ -68,8 +70,8 @@ function GameBoard() {
 
     return (
         <>
-            {/* <h1>{game.name}</h1> game does not contain name, this is game_tiles */}
-            {/* <h2 value={gameTable.turn}>{turnCount.turn}</h2> */}
+            <h1>{info.name} hello world</h1>
+            <h2>{info.turn}</h2>
             <div className="button-container">
 
 

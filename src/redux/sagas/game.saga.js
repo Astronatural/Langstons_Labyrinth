@@ -49,7 +49,7 @@ function* updateGameSaga(action) {
     try{
         console.log('in updater', (action.payload[1]).game_id);  //  looks good
         const gameId = (action.payload[1]).game_id;
-        yield axios.put(`/api/game/${gameId}`, {payload: action.payload});  // <-- problem here {payload: action.payload.categoryId}
+        yield axios.put(`/api/game/${gameId}`, {payload: action.payload});  
         // yield put({ type: 'UPDATE_GAMEBOARD', payload: action.payload  }); // tried payload: game.data
     } catch (error) {
         console.log("game update failed", error);
@@ -58,10 +58,10 @@ function* updateGameSaga(action) {
 
 function* infoSaga (action) {
     try {
-        console.log('in game info saga', action.payload);  // looks good!
+        console.log('in game info saga', action.payload);  // game.id
         const game = yield axios.get(`/api/info/${action.payload}`); // , action.payload
-        yield put({ type: 'SET_INFO', payload: game.data }); // ??
-        console.log('info', game.data); // correct
+        yield put({ type: 'SET_INFO', payload: game.data }); 
+        console.log('info', game.data); // now is just 1, wtf!!!!! and now it is back, wTFWTF!
     } catch (error) {
         console.log('game info request failed', error);
     }

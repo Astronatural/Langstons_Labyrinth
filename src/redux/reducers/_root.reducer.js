@@ -12,7 +12,7 @@ const rootReducer = combineReducers({
   errors, // contains registrationMessage and loginMessage
   user, // will have an id and username if someone is logged in
   gameReducer, // for moving game things around.
-  updateReducer
+  updateReducer // for game db info
 });
 
 export default rootReducer;

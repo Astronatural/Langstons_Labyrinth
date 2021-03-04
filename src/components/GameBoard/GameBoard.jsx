@@ -5,6 +5,7 @@ import Boss from './the_boss.png';
 import Player from './blue_shield.png';
 import './GameBoard.css';
 import { shiftRow, shiftColumn } from '../../utils/labyrinth.js';
+import { actionChannel } from 'redux-saga/effects';
 
 
 function GameBoard() {
@@ -14,22 +15,24 @@ function GameBoard() {
     const history = useHistory();
     const dispatch = useDispatch();
     const game = useSelector((store) => store.gameReducer);
-    const user = useSelector((store) => store.user);
+    // const user = useSelector((store) => store.user);
     const info = useSelector((store) => store.updateReducer);
 
 
     useEffect(() => { // onchange rerender.
         setGrid([...game]);
-        setData([...info]);
-    }, [game]);
+        setData([...info]);  // tried [...info], [info], [{info}], { info }, info
+        console.log('in 2nd gb useState', info[0]);  // it makes it here as [{...}], when the second SET_INFO was in.
+    }, [game, info]);
 
     let [grid, setGrid] = useState([...game]);
-    let [data, setData] = useState({info})
+    let [data, setData] = useState([info]);  // tried [info], [...info] (not iterable), {info}.
 
     useEffect(() => { // inital state set
-        dispatch({ type: "FETCH_GAME", payload: params.id })
-        dispatch({ type: "SET_INFO", payload: params.id })
-        console.log(info);  // empty array? refills on refresh!!!
+        dispatch({ type: "FETCH_GAME", payload: params.id });
+        setData([info]);
+        // dispatch({ type: "SET_INFO", payload: params.id });  // tried payload: params.id, payload: action.payload, payload: game.data
+        console.log('in init uS gb', info);  // empty array? refills on refresh!!! [0] is undefined.
     }, []);
 
 
@@ -70,11 +73,15 @@ function GameBoard() {
 
     return (
         <>
-            <h1>{info.name} hello world</h1>
-            <h2>{info.turn}</h2>
+        {info.length > 0 &&
+        <>
+            <h1>{info[0].name} hello world</h1>
+            <h2>{info[0].turn}</h2>
+            <h1>{data[0].name} hello world</h1>
+            <h2>{data[0].turn}</h2>
+            </>
+}
             <div className="button-container">
-
-
                 <button onClick={() => randomizer(grid)}>End Turn</button>
 
                 <img className="token" src={Boss} alt="red skull" />
@@ -88,7 +95,7 @@ function GameBoard() {
                             <div key={tile.id} className="game-tile">
                                 <p className="tileTitle">{tile.id}</p>
                                 <img className={tile.tile_orientation} src={tile.shape_url} />
-                                {/* token goes here */}
+                                {/* <img className="token" src={Player} alt="blue shield" /> */}
                                 {/* <img className="token" src={Player} alt="blue shield" /> */}
                             </div>
                         );

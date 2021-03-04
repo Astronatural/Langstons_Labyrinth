@@ -96,3 +96,8 @@ display: block;
   align-items: center;
 
 }
+
+body {
+  background-image: url('tranStone.png');
+  background-size: 63em;
+}

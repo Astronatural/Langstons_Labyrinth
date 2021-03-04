@@ -12,7 +12,10 @@
     grid-template-areas:    'zone1 zone2 zone3 zone4 zone5 zone6 zone7';
     grid-gap: .1em;
     align-content: center;
-    background-color: rgb(111, 106, 116);
+    background-color:#333941;
+    padding: 5em;
+    margin-left: 23em;
+    margin-right: 23em;
 }
 
 .grid-container > div {
@@ -24,17 +27,20 @@
     color:rgb(148, 94, 14);
     width: 6em;
     height: 6em;
-    /* position: relative */
+    position: relative
 }
 
 
-/* .grid-container > div img {
+.grid-container > div img {
     position: absolute;
-} */
+    border:  rgb(145, 140, 150);
+    border-style: solid;
+    border-width: 6px;
+} 
 
-/* .grid-container > div img.token  {
+.grid-container > div img.token  {
     right: 0px;
-} */
+}
 
 button {
     margin: .3em;
@@ -61,8 +67,8 @@ img {
 .tileTitle{
     color: blanchedalmond;
     position: relative;
-    top: 3em;
     right: 1.8em;
+    bottom: 2em;
     z-index: 2;
 }
 

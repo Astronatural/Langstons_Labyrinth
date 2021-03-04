@@ -92,7 +92,7 @@ router.delete(`/:id`, (req, res) => {
 router.get(`/:id`, (req, res) => {
     // console.log('game router', req.params.id);  // is the correct id
     const gameOn = req.params.id;
-    const gameTilesQuery = `SELECT * FROM "game_tiles" WHERE "game_id"=$1;`
+    const gameTilesQuery = `SELECT * FROM "game_tiles" WHERE "game_id"=$1 ORDER BY "tile_pos" ASC;`
     pool.query(gameTilesQuery, [gameOn])
         .then(result => {
             // console.log('game_tiles', result.rows); // looks good.

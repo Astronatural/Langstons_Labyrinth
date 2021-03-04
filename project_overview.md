@@ -39,3 +39,5 @@ Colors:
         darker: #333941
     ground brown: #796755
         darker: #423934
+    light grey: rgb(197, 192, 201)
+    redish grey:  rgb(111, 106, 116)

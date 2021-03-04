@@ -6,6 +6,7 @@ import Player from './blue_shield.png';
 import './GameBoard.css';
 import { shiftRow, shiftColumn } from '../../utils/labyrinth.js';
 
+
 function GameBoard() {
 
 
@@ -31,6 +32,7 @@ function GameBoard() {
 
 
     // new randomizer + refactor
+    // still might want to add tile reorienter, but maybe not now...
     function randomizer(grid) {
         const gridSize = grid.length;
         let newGrid = grid;
@@ -49,12 +51,18 @@ function GameBoard() {
         const columnDirection = Math.random() > 0.5 ? 'up' : 'down';
         console.log('moving column', columnIndex, 'in', columnDirection);
         newGrid = shiftColumn(newGrid, columnIndex, columnDirection);
-        // newGrid = shiftColumn(newGrid, 1, 'up');
-
         console.log(newGrid);
         setGrid([...newGrid]);
+        dispatch({ type: 'MOVE_MAZE', payload: newGrid })  // looks good
+        // rid.sort(function (a, b) {
+        //     return a.tile_pos - b.tile_pos;
+        // })
+
+        // dispatch({ type: "FETCH_GAME", payload: params.id })  // perhaps needed, once update works.
         
     }; // end randomizer
+
+
 
 
 

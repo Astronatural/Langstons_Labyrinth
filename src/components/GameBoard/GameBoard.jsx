@@ -16,13 +16,13 @@ function GameBoard() {
     const dispatch = useDispatch();
     const game = useSelector((store) => store.gameReducer);
     // const user = useSelector((store) => store.user);
-    const info = useSelector((store) => store.updateReducer);
+    const info = useSelector((store) => store.gameInfoReducer);
 
 
     useEffect(() => { // onchange rerender.
         setGrid([...game]);
         // setData([info]);  // tried [...info], [info], [{info}], { info }, info
-        console.log('in 2nd gb useState', info[0]);  // it makes it here as [{...}], when the second SET_INFO was in.
+        console.log('in 2nd gb useState', info);  // it makes it here as [{...}], when the second SET_INFO was in.
         // dispatch({ type: 'GAME_INFO', payload: params.id });
     }, [game]);  // maybe I need info here.
 
@@ -37,17 +37,17 @@ function GameBoard() {
     }, []);  // loop if anything here.
 
 
-    const tokenObjects = [
-        {
-            name: 'boss',
-            image: '/the_boss.png',
-            position: 24               //info[0].boss_pos
-        },
-        {
-            name: 'player',
-            image: './blue_shield.png',
-            position: 0                 //info[0].party_pos
-        }]
+    // const tokenObjects = [  
+    //     {
+    //         name: 'boss',
+    //         image: '/the_boss.png',
+    //         position: 24               //info[0].boss_pos
+    //     },
+    //     {
+    //         name: 'player',
+    //         image: './blue_shield.png',
+    //         position: 0                 //info[0].party_pos
+    //     }]
 
 
     // new randomizer + refactor
@@ -75,7 +75,11 @@ function GameBoard() {
     }; // end randomizer
 
 
-
+    // { tile.token_pos === boss_pos && <img src={Boss} /> }
+    // { tile.token_pos === player_pos && <img src={Player} /> }
+    // can't video call, wife sleeping on couch next to me :P yo!
+    // so lets move these down to the tile map and see what happens
+    
 
 
     return (
@@ -84,12 +88,12 @@ function GameBoard() {
             <div className="button-container">
                 <button onClick={() => randomizer(grid)}>End Turn</button>
 
-                {info.length > 0 &&
+                
                     <>
-                        <h1>{info[0].name}</h1>
-                        <h1>Turn #: {info[0].turn}</h1>
+                        <h1>{info.name}</h1>  
+                        <h1>Turn #: {info.turn}</h1>
                     </>
-                }
+                
                 <img className="token" src={Player} alt="blue shield" />
                 <h1>Player's Turn</h1>
                 <img className="token" src={Boss} alt="red skull" />
@@ -105,8 +109,9 @@ function GameBoard() {
                                 <div key={tile.id} className="game-tile">
                                     <p className="tileTitle">{tile.id}</p>
                                     <img className={tile.tile_orientation} src={tile.shape_url} />
-                                    <img className="token" id='player' src={Player} alt="blue shield" />
-                                    <img className="token" id='boss' src={Boss} alt="red skull" />
+                                    { /* NOTE: If both are 'undefined' itll match. Maybe not possible, but noted */} 
+                                    { tile.tile_pos === info.party_pos && <img src={Player} />} 
+                                    { tile.tile_pos === info.boss_pos && <img src={Boss} />}
                                 </div>
                             );
                         })}

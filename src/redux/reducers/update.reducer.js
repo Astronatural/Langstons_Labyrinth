@@ -1,4 +1,4 @@
-const updateReducer = (state = [], action) => {   //  tried; {} = game.map is not a function. [], [{}] = game undefined.
+const gameInfoReducer = (state = {}, action) => {   //  tried; {} = game.map is not a function. [], [{}] = game undefined.
     switch (action.type) {
         case 'SET_INFO':
             console.log( action.payload);  // its here... state is game.id, payload is [{...}] now state is [] wtf!
@@ -16,4 +16,4 @@ const updateReducer = (state = [], action) => {   //  tried; {} = game.map is no
     }
 };
 
-export default updateReducer;
+export default gameInfoReducer;

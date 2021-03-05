@@ -62,7 +62,7 @@ function* infoSaga(action) {
         console.log('in game info saga', action.payload);  // game.id
         const game = yield axios.get(`/api/info/${action.payload}`); // , action.payload
         yield put({ type: 'SET_INFO', payload: game.data });
-        console.log('info', game.data); // now is just 1, wtf!!!!! and now it is back, wTFWTF!
+        console.log('info', game.data);  
     } catch (error) {
         console.log('game info request failed', error);
     }

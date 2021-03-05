@@ -11,7 +11,7 @@ router.get(`/:id`, (req, res) => {
     pool.query(gameInfoQuery, [infoOn])
         .then(result => {
             console.log('game info', result.rows); // good
-            res.send(result.rows);
+            res.send(result.rows[0]);
         }).catch(err => {
             console.log('Could not load game info')
         });

@@ -24,7 +24,7 @@ function GameBoard() {
         // setData([info]);  // tried [...info], [info], [{info}], { info }, info
         console.log('in 2nd gb useState', info[0]);  // it makes it here as [{...}], when the second SET_INFO was in.
         // dispatch({ type: 'GAME_INFO', payload: params.id });
-    }, [game]);
+    }, [game]);  // maybe I need info here.
 
     let [grid, setGrid] = useState([...game]);
     // let [data, setData] = useState([info]);  // tried [info], [...info] (not iterable), {info}.
@@ -32,9 +32,22 @@ function GameBoard() {
     useEffect(() => { // inital state set
         dispatch({ type: "FETCH_GAME", payload: params.id });
         dispatch({ type: 'GAME_INFO', payload: params.id });
-       // dispatch({ type: "SET_INFO", payload: params.id, });  // tried payload: params.id, payload: action.payload, payload: game.data
+        // dispatch({ type: "SET_INFO", payload: params.id, });  // tried payload: params.id, payload: action.payload, payload: game.data
         console.log('in init uS gb', info);  // empty array? refills on refresh!!! [0] is undefined.
     }, []);  // loop if anything here.
+
+
+    const tokenObjects = [
+        {
+            name: 'boss',
+            image: '/the_boss.png',
+            position: 24               //info[0].boss_pos
+        },
+        {
+            name: 'player',
+            image: './blue_shield.png',
+            position: 0                 //info[0].party_pos
+        }]
 
 
     // new randomizer + refactor
@@ -43,9 +56,6 @@ function GameBoard() {
         const gridSize = grid.length;
         let newGrid = grid;
         const rows = Math.ceil(Math.sqrt(gridSize));
-        // const cols = Math.ceil(Math.sqrt(gridSize));  // not used ATM
-        // select a random row
-        // generate random number 0-(cols) for which row or column to move.  Maybe this can just run twice without the double up of pos?
         const rowIndex = Math.floor((Math.random() * rows) + 0);
         const rowDirection = Math.random() > 0.5 ? 'left' : 'right';
         console.log('moving row', rowIndex, 'in', rowDirection);
@@ -59,16 +69,9 @@ function GameBoard() {
         newGrid = shiftColumn(newGrid, columnIndex, columnDirection);
         console.log(newGrid);
         setGrid([...newGrid]);
-        dispatch({ type: 'MOVE_MAZE', payload: [...newGrid] }) 
+        dispatch({ type: 'MOVE_MAZE', payload: [...newGrid] })
         // increase the turnCount and dispatch it.
-        dispatch({ type: "ADD_TURN", payload: params.id});  // Do I have access here?  don;t do nothing.
-
-        // dispatch({ type: 'GAME_INFO', payload: game.game_id }); // maybe game.id or game_id // doesn't help on refresh
-        // rid.sort(function (a, b) {
-        //     return a.tile_pos - b.tile_pos;
-        // })
-        // dispatch({ type: "FETCH_GAME", payload: params.id })  // perhaps needed, once update works.
-
+        dispatch({ type: "ADD_TURN", payload: params.id });
     }; // end randomizer
 
 
@@ -77,38 +80,39 @@ function GameBoard() {
 
     return (
         <>
-     
+
             <div className="button-container">
                 <button onClick={() => randomizer(grid)}>End Turn</button>
-               
+
                 {info.length > 0 &&
                     <>
                         <h1>{info[0].name}</h1>
                         <h1>Turn #: {info[0].turn}</h1>
-                        {/* <h1>{data[0].name}</h1>
-                        <h2 value={turnCount}>{data[0].turn}</h2> */}
                     </>
                 }
-
-                <img className="token" src={Boss} alt="red skull" />
                 <img className="token" src={Player} alt="blue shield" />
-
+                <h1>Player's Turn</h1>
+                <img className="token" src={Boss} alt="red skull" />
+                <h1>Boss's Turn</h1>
+                <button onClick={() => history.push(`/user`)}>Exit the Labyrinth</button>
             </div>
-            {game.length > 0 &&
-                <div className="grid-container">
-                    {grid.map(tile => {
-                        return (
-                            <div key={tile.id} className="game-tile">
-                                <p className="tileTitle">{tile.id}</p>
-                                <img className={tile.tile_orientation} src={tile.shape_url} />
-                                {/* <img className="token" src={Player} alt="blue shield" /> */}
-                                {/* <img className="token" src={Player} alt="blue shield" /> */}
-                            </div>
-                        );
-                    })}
-                </div>
-            }
-            {/* <button>Save and Exit</button> */}
+
+            <div className='gameBox'>
+                {game.length > 0 &&
+                    <div className="grid-container">
+                        {grid.map(tile => {
+                            return (
+                                <div key={tile.id} className="game-tile">
+                                    <p className="tileTitle">{tile.id}</p>
+                                    <img className={tile.tile_orientation} src={tile.shape_url} />
+                                    <img className="token" id='player' src={Player} alt="blue shield" />
+                                    <img className="token" id='boss' src={Boss} alt="red skull" />
+                                </div>
+                            );
+                        })}
+                    </div>
+                }
+            </div>
         </>
     )
 };

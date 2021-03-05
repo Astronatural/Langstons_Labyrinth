@@ -24,11 +24,11 @@ function* fetchGameSaga() {
     }
 }
 
-
+// Delete a game from game DB and from game_tiles DB.
 function* deleteGameSaga(action) {
     try {
         yield axios.delete(`/api/game/${action.payload}`);
-        yield put({ type: 'FETCH_GAMES' });  // right, I want to reset the game list?        
+        yield put({ type: 'FETCH_GAMES' });        
     } catch {
         console.log('delete error id:', action.payload);
 
@@ -37,15 +37,15 @@ function* deleteGameSaga(action) {
 // saga for geting a game to the gameboard.
 function* gameBoardSaga(action) {
     try {
-        const game = yield axios.get(`/api/game/${action.payload}`); // , action.payload
-        yield put({ type: 'SET_GAMEBOARD', payload: game.data }); // ??
-        yield put({ type: 'GAME_INFO', payload: action.payload})
+        const game = yield axios.get(`/api/game/${action.payload}`); 
+        yield put({ type: 'SET_GAMEBOARD', payload: game.data }); 
+        yield put({ type: 'GAME_INFO', payload: action.payload})  // <-- is this redundant or neccessary?
     } catch (error) {
         console.log('game get request failed', error);
     }
 }
 
-// updates the movement of the gameboard.  // no idea if this is right, gettin too tired.
+// updates the movement of the gameboard.
 function* updateGameSaga(action) {
     try {
         console.log('in updater', (action.payload[1]).game_id);  //  looks good

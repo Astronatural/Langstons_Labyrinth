@@ -1,11 +1,30 @@
+#boss {
+    display: absolute;
+    top: 3em;
+    left: .5em;
+}
+
+#player {
+    display: absolute;
+    top: .5em;
+    left: 3em;
+}
+
+
 .button-container {
-    
-    display: grid;
-    grid-template-areas:    'zone1 zone2 zone3 zone4 zone5 zone6';
+    display: flex;
     grid-gap: .5em;
-    align-content: center;
+    align-content:space-between;
+    justify-content: space-evenly;
+    flex-direction: row;
     background-color: rgb(111, 106, 116);
     padding: .3em;
+}
+
+.gameBox{
+    display: flex;
+    align-content:space-between;
+    justify-content: space-evenly;
 }
 
 .grid-container {
@@ -13,10 +32,8 @@
     grid-template-areas:    'zone1 zone2 zone3 zone4 zone5 zone6 zone7';
     grid-gap: .1em;
     align-content: center;
-    background-color:#333941;
-    padding: 5em;
-    margin-left: 23em;
-    margin-right: 23em;
+    background-color: rgb(51, 57, 65, 0.5);
+    padding: 3em;
 }
 
 .grid-container > div {
@@ -39,17 +56,13 @@
     border-width: 6px;
 } 
 
-.grid-container > div img.token  {
-    right: 0px;
-}
-
 button {
-    margin: .3em;
+    margin: .5em;
     background-color: rgb(197, 192, 201);
     display: grid;
     text-align: center;
     align-content: center;
-    font-size: 2em;
+    font-size: 1.5em;
     padding: .2em;
     color: rgb(148, 94, 14);
 }
@@ -63,7 +76,9 @@ img {
     width: 3em;
     height: 3em;
     z-index: 3;
+    border: none !important;
 }
+
 
 .tileTitle{
     color: blanchedalmond;

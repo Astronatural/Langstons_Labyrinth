@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
+import './UserPage.css';
 
 
 function UserPage() {
@@ -53,7 +54,7 @@ function UserPage() {
         {/* <p>Your ID is: {user.id}</p> */}
         <p>This is where you load your Labyrinths from!</p>
         {game.length > 0 &&
-        <table>
+          <table className='cinereousTable'>
           <thead>
             <tr>
               <th></th><th>Labyrinth Name</th><th>Turn #</th><th></th>
@@ -73,8 +74,9 @@ function UserPage() {
         </table>
       }
       </div>
-        <p>To make a new Labyrinth just give it a name!</p>
-        <form onSubmit={makeNewGame} >
+        <form className="container" onSubmit={makeNewGame} >
+        <p>To make a new Labyrinth all it needs is a name!</p>
+
           <input
             value={newGame.name}
             onChange={(e) => setGame({ ...newGame, name: e.target.value })}

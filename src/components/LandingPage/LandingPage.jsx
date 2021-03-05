@@ -17,10 +17,10 @@ function LandingPage() {
 
   return (
     <div className="container">
-      <h2 id="wlcm">{heading}</h2>
+      <h2 id="wlcm">"You're Here Forever..."</h2>
 
       <div className="grid">
-        <div className="grid-col grid-col_12">
+        <div className="splashBox">
           <img className="splash" src={SplashScreen}/>
         </div>
         {/* <div className="grid-col grid-col_4">

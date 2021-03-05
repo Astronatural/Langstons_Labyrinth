@@ -75,10 +75,9 @@ function GameBoard() {
     }; // end randomizer
 
 
-    // { tile.token_pos === boss_pos && <img src={Boss} /> }
-    // { tile.token_pos === player_pos && <img src={Player} /> }
-    // can't video call, wife sleeping on couch next to me :P yo!
-    // so lets move these down to the tile map and see what happens
+// token movement.  Looks like I can glom onto the calculateNewPosition just trigger it by the arrow keys
+// should add a 'skip turn' ability/ button in case a token gets cornered.
+// then update that new postion in the DB and Bob should be your uncle.  
     
 
 
@@ -87,13 +86,8 @@ function GameBoard() {
 
             <div className="button-container">
                 <button onClick={() => randomizer(grid)}>End Turn</button>
-
-                
-                    <>
                         <h1>{info.name}</h1>  
-                        <h1>Turn #: {info.turn}</h1>
-                    </>
-                
+                        <h1>Turn #: {info.turn}</h1>               
                 <img className="token" src={Player} alt="blue shield" />
                 <h1>Player's Turn</h1>
                 <img className="token" src={Boss} alt="red skull" />

@@ -116,7 +116,7 @@ function GameBoard() {
                 <h1>Turn #: {info.turn}</h1>
                 <div className="playerBox" >
                     <img className="token" src={Player} alt="blue shield" />
-                    <div>
+                    <div className='arrowKeys'>
                         <button onClick={() => playerMove(grid, 'left')}>left</button>
                         <button onClick={() => playerMove(grid, 'up')}>up</button>
                         <button onClick={() => playerMove(grid, 'right')}>right</button>
@@ -125,7 +125,7 @@ function GameBoard() {
                 </div>
                 <div className="bossBox"> {/*  onClick={bossMove()}*/}
                     <img className="token" src={Boss} alt="red skull" />
-                    <div>
+                    <div className='arrowKeys'>
                         <button onClick={() => bossMove(grid, 'left')}>left</button>
                         <button onClick={() => bossMove(grid, 'up')}>up</button>
                         <button onClick={() => bossMove(grid, 'right')}>right</button>
@@ -144,8 +144,8 @@ function GameBoard() {
                                     <p className="tileTitle">{tile.id}</p>
                                     <img className={tile.tile_orientation} src={tile.shape_url} />
                                     { /* NOTE: If both are 'undefined' itll match. Maybe not possible, but noted */}
-                                    { tile.tile_pos === info.party_pos && <img className="token" src={Player} />}
-                                    { tile.tile_pos === info.boss_pos && <img className="token" src={Boss} />}
+                                    { tile.tile_pos === info.party_pos && <img className="token" id="player" src={Player} />}
+                                    { tile.tile_pos === info.boss_pos && <img className="token" id="boss" src={Boss} />}
                                 </div>
                             );
                         })}

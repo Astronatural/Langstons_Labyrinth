@@ -1,13 +1,13 @@
 #boss {
     display: absolute;
-    top: 3em;
-    left: .5em;
+    top: 2em;
+    right: 1.4em;
 }
 
 #player {
     display: absolute;
-    top: .5em;
-    left: 3em;
+    left: 2em;
+    bottom: 1.5em;
 }
 
 
@@ -112,6 +112,14 @@ img {
     right: 1.8em;
     bottom: 2em;
     z-index: 2;
+}
+
+.arrowKeys {
+    display: flex;
+    flex-direction: row;
+    align-content: space-around;
+
+
 }
 
 

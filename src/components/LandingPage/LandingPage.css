@@ -81,6 +81,11 @@ Grid
 
 
 /*------------------------------------------------------------------------------------*/
+@font-face {
+  font-family: fireBreath;
+  src: url('../font/BreatheFireIi-2z9W.ttf');
+}
+
 .splash {
   display: block;
   margin-left: auto;
@@ -101,11 +106,16 @@ Grid
 
 
 #wlcm {
+  font-family: fireBreath;
+  text-shadow: 3px 3px red;
+  letter-spacing: 5px;
   color:#a3391e;
-  font-size: 45px;
+  font-size: 80px;
   display: flex;
   justify-content: center;
   align-items: center;
+  background-color: rgb(150, 144, 135, .15);
+  border-radius: 15px;
 }
 
 body {

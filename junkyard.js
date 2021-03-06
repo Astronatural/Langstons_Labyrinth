@@ -1,3 +1,9 @@
+@font-face {
+    font - family: fireBreath;
+    src: url(../../../../ public / BreatheFireIi - 2z9W.ttf);  /*public/BreatheFireIi-2z9W.ttf*/
+}
+
+
 const playerMove = (grid, partyPos, e) => {
     console.log('in player move');
     const gridSize = grid.length;

@@ -1,3 +1,8 @@
+@font-face {
+  font-family: fireBreath;
+  src: url('../font/BreatheFireIi-2z9W.ttf');
+}
+
 .nav {
   /* flex box layout */
   display: flex;
@@ -14,21 +19,23 @@
 }
 
 .nav-title {
-  font-size: 24px;
+  font-family: fireBreath;
+  letter-spacing: 2px;
+  font-size: 44px;
   font-weight: 700;
-  color: #f2f2f2;
-  padding-left: 10px;
+  color: #d11414;
+  padding-left: 2em;
   margin: 0;
 }
 
 .navLink {
   display: inline-block;
-  color: #f2f2f2;
+  color:rgb(197, 192, 202);
   background-color: #4a5462;
   text-align: center;
   padding: 24px 10px;
   text-decoration: none;
-  font-size: 15px;
+  font-size: 25px;
 
   /* these last two make the logout button in
   the nav bar look like another link */

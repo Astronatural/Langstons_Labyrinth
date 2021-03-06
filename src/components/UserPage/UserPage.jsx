@@ -75,7 +75,7 @@ function UserPage() {
       }
       </div>
         <form className="container" onSubmit={makeNewGame} >
-        <p>To make a new Labyrinth all it needs is a name!</p>
+        <h2>To make a new Labyrinth all it needs is a name!</h2>
 
           <input
             value={newGame.name}

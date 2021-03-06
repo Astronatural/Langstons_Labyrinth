@@ -1,3 +1,83 @@
+const playerMove = (grid, partyPos, e) => {
+    console.log('in player move');
+    const gridSize = grid.length;
+    const direction = "none"
+    let newPartyPos = partyPos;
+    document.body.addEventListener('keydown', e => {
+        // const key = event.key
+        // console.log(key);
+        if (e.key === 'ArrowLeft') {
+            direction = "left";
+        } if (e.key === 'ArrowUp') {
+            direction = "up";
+        } if (e.key === 'ArrowRight') {
+            direction = "right";
+        } if (e.key === 'ArrowDown') {
+            direction = "down";
+        } else {
+            return
+        }
+        console.log(direction);
+        newPartyPos = calculateNewPosition(partyPos, direction, gridSize)
+        setPartyPos([...newPartyPos]);
+    })
+    // event.preventDefault();
+} // end playerMove
+
+
+switch (key) {  // head e.which, which is depreciated.
+                case ArrowLeft: // left
+                    direction = "left";
+                    break;
+                case ArrowUp: // up
+                    direction = "up";
+                    break;
+                case ArrowRight: // right
+                    direction = "right";
+                    break;
+                case ArrowDown: // down
+                    direction = "down"
+                    break;
+                default: return; // exit this handler for other keys
+            }
+
+
+document.body.addEventListener('keydown', function (event) {
+    const key = event.key;
+    switch (key) {
+        case "ArrowLeft":
+            str = 'Left';
+            break;
+        case "ArrowRight":
+            str = 'Right';
+            break;
+        case "ArrowUp":
+            str = 'Up';
+            break;
+        case "ArrowDown":
+            str = 'Down';
+            break;
+    } 
+
+
+
+document.onkeydown = function (e) {
+    switch (e.keyCode) {
+        case 37:
+            str = 'Left Key pressed!';
+            break;
+        case 38:
+            str = 'Up Key pressed!';
+            break;
+        case 39:
+            str = 'Right Key pressed!';
+            break;
+        case 40:
+            str = 'Down Key pressed!';
+            break;
+    } 
+
+
 function randomizer(grid) {
     const columnMover = Math.floor((Math.random() * 12) + 1);
     switch (grid, columnMover) {

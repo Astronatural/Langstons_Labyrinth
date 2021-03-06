@@ -29,8 +29,7 @@ export const calculateNewPosition = (currentPosition, direction, gridSize, skipT
         if (newPos < 0) {
             newPos = newPos + gridSize;
         }
-
-
+        // space for skipTreasureRoom
         return newPos;
     }
     // return (currentPosition - rows) < 0 ? newPos + gridSize : (currentPosition - rows);

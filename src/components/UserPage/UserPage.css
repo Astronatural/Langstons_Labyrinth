@@ -29,6 +29,6 @@ table.cinereousTable tfoot td {
 }
 
 .container{
-    background-color: rgb(111, 106, 116);
-
+  background-color: rgb(111, 106, 116);
+  margin: 3em;
 }

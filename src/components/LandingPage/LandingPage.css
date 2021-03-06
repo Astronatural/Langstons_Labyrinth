@@ -112,3 +112,10 @@ body {
   background-image: url('tranStone.png');
   background-size: 63em;
 }
+
+.splashContainer {
+  margin-left: auto;
+  margin-right: auto;
+  width: 60em;
+  height: 60em;
+}

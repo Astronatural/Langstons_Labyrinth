@@ -11,6 +11,24 @@
 }
 
 
+.playerBox{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+     align-content: center;
+     border:blanchedalmond 2px solid;
+}
+
+
+.bossBox{
+      display: flex;
+    flex-direction: column;
+    justify-content: center;
+     align-content: center;
+     border:blanchedalmond 2px solid;
+}
+
+
 .button-container {
     display: flex;
     grid-gap: .5em;
@@ -56,26 +74,34 @@
     border-width: 6px;
 } 
 
+
 button {
     margin: .5em;
     background-color: rgb(197, 192, 201);
-    display: grid;
     text-align: center;
     align-content: center;
     font-size: 1.5em;
     padding: .2em;
     color: rgb(148, 94, 14);
+    max-height: 3em;
+    display: flex;
+    align-self: center;
 }
+
 
 img {
     width: 6em;
     height: 6em;
 }
 
+
 .token{
+    padding: 1em;
     width: 3em;
     height: 3em;
     z-index: 3;
+    display: flex;
+    align-self: center;
     border: none !important;
 }
 
@@ -87,6 +113,7 @@ img {
     bottom: 2em;
     z-index: 2;
 }
+
 
 .zero {
             transform: rotate(0deg)        

@@ -16,7 +16,7 @@ function LandingPage() {
   };
 
   return (
-    <div className="container">
+    <div className="splashContainer">
       <h2 id="wlcm">"You're Here Forever..."</h2>
 
       <div className="grid">

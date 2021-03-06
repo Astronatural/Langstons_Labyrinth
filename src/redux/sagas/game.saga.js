@@ -72,6 +72,7 @@ function* addTurnSaga(action) {
     try {
         console.log('in add turn saga', action.payload);  // game.id
         yield axios.put(`/api/info/${action.payload}`);  //  want to see if it works without reducer, const turn = yield 
+        yield put({ type: 'SET_INFO', payload: game.data });
         yield put({ type: 'GAME_INFO', payload: action.payload });
     } catch (error) {
         console.log('add turn request failed', error);
@@ -83,6 +84,7 @@ function* partyMoveSaga(action) {
         console.log('PCmove saga', action.payload.partyPos);  // correct, but it gets sent as a strange object. { '1': '' }
         console.log('PCmove saga', action.payload.id); // also correct game id
         yield axios.put(`api/info/party/${action.payload.id}`, {payload: action.payload.partyPos})
+        yield put({ type: 'SET_INFO', payload: game.data });
         yield put({ type: 'GAME_INFO', payload: action.payload });  // I think I need this
     } catch (error) {
         console.log('error in party move saga');

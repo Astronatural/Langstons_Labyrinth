@@ -81,7 +81,7 @@ function GameBoard() {
         console.log(gameId);
         console.log(newPartyPos);
         dispatch({ type: 'MOVE_PARTY', payload: {partyPos: newPartyPos, id: gameId }})
-        dispatch({ type: 'GAME_INFO', payload: params.id });
+        // dispatch({ type: 'GAME_INFO', payload: params.id });
         console.log(params.id);
 
     } // end playerMove
@@ -101,11 +101,10 @@ function GameBoard() {
         console.log(info.id);
         gameId = info.id;
         console.log(gameId);
-        console.log(newPartyPos);
+        console.log(newBossPos);
         dispatch({ type: 'MOVE_BOSS', payload: {bossPos: newBossPos, id: gameId }});
         console.log(params.id);
-        dispatch({ type: 'GAME_INFO', payload: params.id });
-
+        // dispatch({ type: 'GAME_INFO', payload: params.id });
     }
 
 
@@ -127,10 +126,10 @@ function GameBoard() {
                 <div className="bossBox"> {/*  onClick={bossMove()}*/}
                     <img className="token" src={Boss} alt="red skull" />
                     <div>
-                        <button onClick={() => bossMove(grid, bossPos, 'left')}>left</button>
-                        <button onClick={() => bossMove(grid, bossPos, 'up')}>up</button>
-                        <button onClick={() => bossMove(grid, bossPos, 'right')}>right</button>
-                        <button onClick={() => bossMove(grid, bossPos, 'down')}>down</button>
+                        <button onClick={() => bossMove(grid, 'left')}>left</button>
+                        <button onClick={() => bossMove(grid, 'up')}>up</button>
+                        <button onClick={() => bossMove(grid, 'right')}>right</button>
+                        <button onClick={() => bossMove(grid, 'down')}>down</button>
                     </div>
                 </div>
                 <button onClick={() => randomizer(grid)}>Move Maze</button>

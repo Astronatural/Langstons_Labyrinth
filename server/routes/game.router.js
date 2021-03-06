@@ -5,9 +5,8 @@ const {
     rejectUnauthenticated,
 } = require('../modules/authentication-middleware');
 
-/**
- * GET route template
- */
+
+//  get a specific game from game DB
 router.get('/', rejectUnauthenticated, (req, res) => {
     // GET route code here
     const query = `SELECT * FROM "game" WHERE "user_id"=$1;`
@@ -89,6 +88,7 @@ router.delete(`/:id`, (req, res) => {
 });
 
 
+// get the game_tiles tiles array
 router.get(`/:id`, (req, res) => {
     // console.log('game router', req.params.id);  // is the correct id
     const gameOn = req.params.id;
@@ -108,8 +108,6 @@ router.put(`/:id`, async (req, res) => {
     const mazeToUpdate = req.params.id;
     const update = req.body.payload;
     console.log('update router, game & update', mazeToUpdate, update);  // mazeToUpdate correct, update correct.
-    // const queryText = `UPDATE "game_tiles" SET "tile_pos" = $1, "tile_orientation"= $2
-    //                 WHERE "id" = $3 AND "game_id" = $4;`;
     try {
         for (let i = 0; i < update.length; i++) {
         const queryText = `UPDATE "game_tiles" SET "tile_pos" = $1, "tile_orientation"= $2

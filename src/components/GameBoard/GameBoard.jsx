@@ -82,7 +82,7 @@ function GameBoard() {
         console.log(newPartyPos);
         dispatch({ type: 'MOVE_PARTY', payload: {partyPos: newPartyPos, id: gameId }})
         // dispatch({ type: 'GAME_INFO', payload: params.id });
-        console.log(params.id);
+        // console.log(params.id);
 
     } // end playerMove
 

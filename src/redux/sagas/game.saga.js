@@ -79,13 +79,14 @@ function* addTurnSaga(action) {
     }
 }
 
+
+// handles the party move dispatch
 function* partyMoveSaga(action) {
     try {
         console.log('PCmove saga', action.payload.partyPos);  // correct, but it gets sent as a strange object. { '1': '' }
         console.log('PCmove saga', action.payload.id); // also correct game id
         yield axios.put(`api/info/party/${action.payload.id}`, {payload: action.payload.partyPos})
-        yield put({ type: 'SET_INFO', payload: game.data });
-        yield put({ type: 'GAME_INFO', payload: action.payload });  // I think I need this
+        yield put({ type: 'GAME_INFO', payload: action.payload.id });  // I think I need this
     } catch (error) {
         console.log('error in party move saga');
     };
@@ -95,7 +96,8 @@ function* partyMoveSaga(action) {
 function* bossMoveSaga(action) {
     try {
         yield axios.put(`api/info/boss/${action.payload.id}`, {payload: action.payload.bossPos})
-        yield put({ type: 'GAME_INFO', payload: action.payload });  // I think I need this
+        console.log(action.payload);
+        yield put({ type: 'GAME_INFO', payload: action.payload.id });  // I think I need this
     } catch (error) {
         console.log('error in boss move saga');
     };

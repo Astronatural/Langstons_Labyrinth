@@ -112,8 +112,10 @@ function GameBoard() {
         <>
             <div className="button-container">
                 <button onClick={() => history.push(`/user`)}>Exit the Labyrinth</button>
+                <div>
                 <h1>{info.name}</h1>
                 <h1>Turn #: {info.turn}</h1>
+                </div>
                 <div className="playerBox" >
                     <img className="token" src={Player} alt="blue shield" />
                     <div className='arrowKeys'>

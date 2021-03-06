@@ -30,6 +30,8 @@
 
 
 .button-container {
+      font-family: "Trebuchet MS", Helvetica, sans-serif;
+
     display: flex;
     grid-gap: .5em;
     align-content:space-between;

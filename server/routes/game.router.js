@@ -103,6 +103,7 @@ router.get(`/:id`, (req, res) => {
 });
 
 
+// updates the tile_pos in game_tiles DB
 router.put(`/:id`, async (req, res) => {
     const mazeToUpdate = req.params.id;
     const update = req.body.payload;

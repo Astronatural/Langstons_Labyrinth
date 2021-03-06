@@ -28,7 +28,7 @@ function* fetchGameSaga() {
 function* deleteGameSaga(action) {
     try {
         yield axios.delete(`/api/game/${action.payload}`);
-        yield put({ type: 'FETCH_GAMES' });        
+        yield put({ type: 'FETCH_GAMES' });
     } catch {
         console.log('delete error id:', action.payload);
 
@@ -37,9 +37,9 @@ function* deleteGameSaga(action) {
 // saga for geting a game to the gameboard.
 function* gameBoardSaga(action) {
     try {
-        const game = yield axios.get(`/api/game/${action.payload}`); 
-        yield put({ type: 'SET_GAMEBOARD', payload: game.data }); 
-        yield put({ type: 'GAME_INFO', payload: action.payload})  // <-- is this redundant or neccessary?
+        const game = yield axios.get(`/api/game/${action.payload}`);
+        yield put({ type: 'SET_GAMEBOARD', payload: game.data });
+        yield put({ type: 'GAME_INFO', payload: action.payload })  // <-- is this redundant or neccessary?
     } catch (error) {
         console.log('game get request failed', error);
     }
@@ -62,7 +62,7 @@ function* infoSaga(action) {
         console.log('in game info saga', action.payload);  // game.id
         const game = yield axios.get(`/api/info/${action.payload}`); // , action.payload
         yield put({ type: 'SET_INFO', payload: game.data });
-        console.log('info', game.data);  
+        console.log('info', game.data);
     } catch (error) {
         console.log('game info request failed', error);
     }
@@ -78,6 +78,26 @@ function* addTurnSaga(action) {
     }
 }
 
+function* partyMoveSaga(action) {
+    try {
+        console.log('PCmove saga', action.payload.partyPos);  // correct, but it gets sent as a strange object. { '1': '' }
+        console.log('PCmove saga', action.payload.id); // also correct game id
+        yield axios.put(`api/info/party/${action.payload.id}`, {payload: action.payload.partyPos})
+        yield put({ type: 'GAME_INFO', payload: action.payload });  // I think I need this
+    } catch (error) {
+        console.log('error in party move saga');
+    };
+};
+
+
+function* bossMoveSaga(action) {
+    try {
+        yield axios.put(`api/info/boss/${action.payload.id}`, {payload: action.payload.bossPos})
+        yield put({ type: 'GAME_INFO', payload: action.payload });  // I think I need this
+    } catch (error) {
+        console.log('error in boss move saga');
+    };
+};
 
 function* addGameSaga() {
     yield takeLatest('MAKE_GAME', gameSaga), // makes new game
@@ -86,7 +106,9 @@ function* addGameSaga() {
         yield takeLatest('FETCH_GAME', gameBoardSaga), // gets the game_tiles
         yield takeEvery('MOVE_MAZE', updateGameSaga)
     yield takeLatest('GAME_INFO', infoSaga), // gets the game DB info 
-        yield takeLatest('ADD_TURN', addTurnSaga)
+        yield takeLatest('ADD_TURN', addTurnSaga),
+        yield takeEvery('MOVE_PARTY', partyMoveSaga),
+        yield takeEvery('MOVE_BOSS', bossMoveSaga)
 }
 
 export default addGameSaga;

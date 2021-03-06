@@ -35,7 +35,7 @@ function GameBoard() {
         dispatch({ type: "FETCH_GAME", payload: params.id });
         dispatch({ type: 'GAME_INFO', payload: params.id });
         // dispatch({ type: "SET_INFO", payload: params.id, });  // tried payload: params.id, payload: action.payload, payload: game.data
-        console.log('in init uS gb', info);  // empty array? refills on refresh!!! [0] is undefined.
+        console.log('in init uS gb', info); 
     }, []);  // loop if anything here.
 
 
@@ -64,41 +64,47 @@ function GameBoard() {
     }; // end randomizer
 
 
-    // token movement.  Looks like I can glom onto the calculateNewPosition just trigger it by the arrow keys
-    // should add a 'skip turn' ability/ button in case a token gets cornered.
-    // then update that new postion in the DB and Bob should be your uncle.  
-
-
-    // const partyPos = info.party_pos
-    // const bossPos = info.boss_pos
-
-    // const playerTurnTrigger = document.getElementById('playerBox')
-    // playerTurnTrigger.addEventListener('click', playerMove(grid, partyPos, event));
-
-
-
     // // Player movement function  1) call tokenMove, 2) PUT new _pos 3) signal next turn phase?
     // // need to target a token!
-    const playerMove = (grid, partyPos, direction) => {
-        console.log('in player move', partyPos);
+    const playerMove = (grid, direction) => {  //    const playerMove = (grid, partyPos, direction) => {
+        let gameId = 0;
+        console.log(info.party_pos);
+        let partyPos = info.party_pos;
+        console.log('in player move', partyPos); 
         const gridSize = grid.length;
         let newPartyPos = partyPos;
         console.log(direction);
         newPartyPos = calculateNewPosition(partyPos, direction, gridSize)
         setPartyPos(newPartyPos);
-        dispatch({ type: 'MOVE_PARTY', payload: newPartyPos })
+        console.log(info.id);
+        gameId = info.id;
+        console.log(gameId);
+        console.log(newPartyPos);
+        dispatch({ type: 'MOVE_PARTY', payload: {partyPos: newPartyPos, id: gameId }})
+        dispatch({ type: 'GAME_INFO', payload: params.id });
+        console.log(params.id);
+
     } // end playerMove
 
 
     // Boss movement function 1) call tokenMove, 2) PUT new _pos 3) signal next turn phase?
-    const bossMove = (grid, bossPos, direction) => {
+    const bossMove = (grid, direction) => {
+        let gameId = 0;
+        console.log(info.boss_pos);
+        let bossPos = info.boss_pos;
         console.log('in boss move', bossPos);
         const gridSize = grid.length;
         let newBossPos = bossPos;
         console.log(direction);
         newBossPos = calculateNewPosition(bossPos, direction, gridSize)
-        setPartyPos(newBossPos);
-        dispatch({ type: 'MOVE_BOSS', payload: newBossPos })
+        setBossPos(newBossPos);
+        console.log(info.id);
+        gameId = info.id;
+        console.log(gameId);
+        console.log(newPartyPos);
+        dispatch({ type: 'MOVE_BOSS', payload: {bossPos: newBossPos, id: gameId }});
+        console.log(params.id);
+        dispatch({ type: 'GAME_INFO', payload: params.id });
 
     }
 
@@ -112,10 +118,10 @@ function GameBoard() {
                 <div className="playerBox" >
                     <img className="token" src={Player} alt="blue shield" />
                     <div>
-                        <button onClick={() => playerMove(grid, partyPos, 'left')}>left</button>
-                        <button onClick={() => playerMove(grid, partyPos, 'up')}>up</button>
-                        <button onClick={() => playerMove(grid, partyPos, 'right')}>right</button>
-                        <button onClick={() => playerMove(grid, partyPos, 'down')}>down</button>
+                        <button onClick={() => playerMove(grid, 'left')}>left</button>
+                        <button onClick={() => playerMove(grid, 'up')}>up</button>
+                        <button onClick={() => playerMove(grid, 'right')}>right</button>
+                        <button onClick={() => playerMove(grid, 'down')}>down</button>
                     </div>
                 </div>
                 <div className="bossBox"> {/*  onClick={bossMove()}*/}

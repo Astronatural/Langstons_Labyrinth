@@ -18,6 +18,7 @@ router.get(`/:id`, (req, res) => {
 });
 
 
+//  update the turn counter in game DB
 router.put(`/:id`, async (req, res) => {
     const mazeToUpdate = req.params.id;
     console.log('update turn', mazeToUpdate);  // mazeToUpdate correct
@@ -31,5 +32,37 @@ router.put(`/:id`, async (req, res) => {
         res.sendStatus(500)
     }
 }); // end turnUpdate.
+
+
+router.put('/party/:id', (req, res) => {
+    const gameToUpdate = req.params.id;
+    console.log(req.body); // { payload: 1 }
+    console.log(req.params); // { id: '9' }
+    const newPartyPos = req.body.payload; 
+    console.log('router update party_pos', gameToUpdate, newPartyPos);  // game right, pos undef.
+    const queryText = `UPDATE "game" SET "party_pos"=$1 WHERE "id" = $2;`;
+    pool.query(queryText, [newPartyPos, gameToUpdate])
+    .then(()=>{
+        res.sendStatus(200);
+    }).catch(err => {
+        console.log('error in party pos update', error);
+        sendStatus(500);
+    });
+});
+   
+
+router.put('/boss/:id', (req, res) => {
+    const gameToUpdate = req.params.id;
+    const newBossPos = req.body.payload;
+    console.log('router update party_pos', gameToUpdate, newBossPos);
+    const queryText = `UPDATE "game" SET "boss_pos"=$1 WHERE "id" = $2;`;
+    pool.query(queryText, [newBossPos, gameToUpdate])
+        .then(() => {
+            res.sendStatus(200);
+        }).catch(err => {
+            console.log('error in boss pos update', error);
+            sendStatus(500);
+        });
+});
 
 module.exports = router;

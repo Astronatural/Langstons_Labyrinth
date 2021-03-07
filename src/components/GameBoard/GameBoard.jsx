@@ -3,6 +3,10 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useHistory, useParams } from 'react-router-dom';
 import Boss from './the_boss.png';
 import Player from './blue_shield.png';
+import upKey from './upKey.png';
+import downKey from './downKey.png';
+import rightKey from './rightKey.png';
+import leftKey from './leftKey.png';
 import './GameBoard.css';
 import { shiftRow, shiftColumn, calculateNewPosition } from '../../utils/labyrinth.js';
 
@@ -119,19 +123,19 @@ function GameBoard() {
                 <div className="playerBox" >
                     <img className="token" src={Player} alt="blue shield" />
                     <div className='arrowKeys'>
-                        <button onClick={() => playerMove(grid, 'left')}>left</button>
-                        <button onClick={() => playerMove(grid, 'up')}>up</button>
-                        <button onClick={() => playerMove(grid, 'right')}>right</button>
-                        <button onClick={() => playerMove(grid, 'down')}>down</button>
+                        <button onClick={() => playerMove(grid, 'left')}><img className="arrow" src={leftKey} /></button>
+                        <button onClick={() => playerMove(grid, 'up')}><img className="arrow" src={upKey} /></button>
+                        <button onClick={() => playerMove(grid, 'right')}><img className="arrow" src={rightKey} /></button>
+                        <button onClick={() => playerMove(grid, 'down')}><img className="arrow" src={downKey} /></button>
                     </div>
                 </div>
                 <div className="bossBox"> {/*  onClick={bossMove()}*/}
                     <img className="token" src={Boss} alt="red skull" />
                     <div className='arrowKeys'>
-                        <button onClick={() => bossMove(grid, 'left')}>left</button>
-                        <button onClick={() => bossMove(grid, 'up')}>up</button>
-                        <button onClick={() => bossMove(grid, 'right')}>right</button>
-                        <button onClick={() => bossMove(grid, 'down')}>down</button>
+                        <button onClick={() => bossMove(grid, 'left')}> <img className="arrow" src={leftKey}/> </button>
+                        <button onClick={() => bossMove(grid, 'up')}><img className="arrow" src={upKey} /></button>
+                        <button onClick={() => bossMove(grid, 'right')}><img className="arrow" src={rightKey} /></button>
+                        <button onClick={() => bossMove(grid, 'down')}><img className="arrow" src={downKey} /></button>
                     </div>
                 </div>
                 <button onClick={() => randomizer(grid)}>Move Maze</button>

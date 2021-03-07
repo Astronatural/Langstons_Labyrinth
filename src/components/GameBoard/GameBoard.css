@@ -90,6 +90,20 @@ button {
     align-self: center;
 }
 
+.arrowKeys {
+    display: flex;
+    flex-direction: row;
+    align-content: space-around;
+}
+
+.arrow{
+    display: flex-box;
+    flex-direction: row;
+    align-content: space-around;
+    width: 2em;
+    height: 2em;
+}
+
 
 img {
     width: 6em;
@@ -114,14 +128,6 @@ img {
     right: 1.8em;
     bottom: 2em;
     z-index: 2;
-}
-
-.arrowKeys {
-    display: flex;
-    flex-direction: row;
-    align-content: space-around;
-
-
 }
 
 

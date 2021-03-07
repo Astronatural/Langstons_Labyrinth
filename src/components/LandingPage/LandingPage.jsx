@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import './LandingPage.css';
 import SplashScreen from './splashscreen.png';
+import SplashText from './splashtext.png';
 
 
 // CUSTOM COMPONENTS
@@ -9,6 +10,7 @@ import RegisterForm from '../RegisterForm/RegisterForm';
 
 function LandingPage() {
   const [heading, setHeading] = useState("You're Here Forever...");
+  const [isVis, setIsVis] = useState('false');
   const history = useHistory();
 
   const onLogin = (event) => {
@@ -20,8 +22,13 @@ function LandingPage() {
       <h2 id="wlcm">"You're Here Forever..."</h2>
 
       <div className="grid">
-        <div className="splashBox">
-          <img className="splash" src={SplashScreen}/>
+        <div className="splashBox"
+        onMouseEnter={() => setIsVis('true')}
+        onMouseLeave={() => setIsVis('false')}
+        >
+          {isVis === 'true' && <img className="splash" src={SplashText}/>}
+          {isVis === 'false' && <img className="splash" src={SplashScreen}/>}
+          
         </div>
         {/* <div className="grid-col grid-col_4">
           <RegisterForm />

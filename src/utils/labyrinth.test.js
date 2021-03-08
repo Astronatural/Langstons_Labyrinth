@@ -1,6 +1,8 @@
 /* tests for labrynth code */
 import { calculateNewPosition } from './labyrinth.js';
 
+
+
 test('Tests labrynth `up` on 3x3', () => {
    expect(calculateNewPosition(0, 'up', 9)).toBe(6);
    expect(calculateNewPosition(1, 'up', 9)).toBe(7);

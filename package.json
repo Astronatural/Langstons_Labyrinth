@@ -29,7 +29,7 @@
     "client": "react-scripts start",
     "server": "nodemon --watch server server/server.js",
     "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
+    "test": "react-scripts test --env=jsdom --coverage --watchAll" ,
     "eject": "react-scripts eject"
   },
   "devDependencies": {

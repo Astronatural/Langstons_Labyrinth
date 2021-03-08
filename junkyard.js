@@ -3,6 +3,28 @@
     src: url(../../../../ public / BreatheFireIi - 2z9W.ttf);  /*public/BreatheFireIi-2z9W.ttf*/
 }
 
+const sum = require('./sum.js'); // require when using Node.js directly, import when using webpack/CRA
+
+
+const hackermansFunction = (num1, num2) => {
+    if (typeof (num1) !== 'number' || typeof (num2) !== 'number') {
+        return NaN;
+    }
+
+    // test if we we pass null in either, we get NaN back
+    test('sum of null returns NaN', () => {
+        expect(sum(53, null)).toBeNaN();
+        expect(sum(null, 53)).toBeNaN();
+        expect(sum(null, null)).toBeNaN();
+        // also, you can have multiple expect() statements (so do two more)
+    });
+
+    let sum = num1 + num2;
+    return sum;
+} //HACKER MAN WAS HERE
+//"who is hacker man?" -hackerman
+//I have fooled hackerman HAHAHA
+module.exports = hackermansFunction;
 
 const playerMove = (grid, partyPos, e) => {
     console.log('in player move');

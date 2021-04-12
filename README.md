@@ -1,11 +1,17 @@
 ## Welcome to the Labyrinth
 
+:skull:
+
 This application is designed for RPG Game Masters to run a specific type of encounter for their players.  It features a maze that moves around the players as they move around it.  
+
+Besides the maze there are two tokens; a Blue Shield and a Red Skull.
+These tokens are moved independently by arrow buttons.
+There are no rules to Langston’s Labyrinth.  As the GM you set the pace as you see fit.
 
 
 ## Project Status
 
-This project is still a work in progress.  Although it is very close to 1.0.
+This project is still a work in progress.  Although it is very close to 1.0.  
 
 
 ## Installation

@@ -16,7 +16,11 @@ This project is still a work in progress.  Although it is very close to 1.0.
 
 ## Installation
 
+To install dependancies:
 npm install
+
+To load application:
+npm run server / npm run client
 
 
 ## Users Manual

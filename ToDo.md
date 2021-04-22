@@ -12,6 +12,16 @@ Allow users to decide on grid size.
 
 Bring back the rotation when a piece moves off grid.
 
-Change database name.
+Change database name.  Also in pool.js
 
 Fix state on load/delete labyrinth.
+
+Delete doc/images, debug pics.
+
+Delete server/constants/warnings???
+
+In game.router:  Add a 3rd query to set a1 as cross and middle tile as end.
+
+In GameBoard.css might not need the rotation designations anymore.
+
+Delete info page

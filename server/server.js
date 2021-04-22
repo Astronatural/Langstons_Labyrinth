@@ -7,7 +7,7 @@ const app = express();
 const sessionMiddleware = require('./modules/session-middleware');
 const passport = require('./strategies/user.strategy');
 
-// Route includes
+// Routes include
 const userRouter = require('./routes/user.router');
 const gameRouter = require('./routes/game.router')
 const infoRouter =  require('./routes/info.router')

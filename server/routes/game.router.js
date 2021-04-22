@@ -31,14 +31,14 @@ router.post('/', (req, res) => {
     // above sets 2 values for a new game, others are default, still need to assign tiles.
     pool.query(newGameQuery, [req.body.name, 49, req.user.id])
         .then(async result => {
-            console.log('New Game Id:', result.rows[0].id); //ID IS HERE!
+            console.log('New Game Id:', result.rows[0].id); 
             const createdGameId = result.rows[0].id  //in the new result on the new row gets the id.
             const insertTileGenQuery = `
       INSERT INTO "game_tiles" ("game_id", "shape_url", "tile_orientation", "tile_pos")
       VALUES  ($1, $2, $3, $4);
       `
             var i = 0;
-            while (i < 49) {
+            while (i < 49) { // need to change for different grid sizes.
                 const shapeResult = await pool.query('SELECT * FROM "tiledex" ORDER BY RANDOM() LIMIT 1');
                 console.log(shapeResult.rows[0]);
                 const tile = shapeResult.rows[0];
@@ -59,13 +59,11 @@ router.post('/', (req, res) => {
                     default:
                         break;
                 }
-                pool.query(insertTileGenQuery, [createdGameId, tile.shape, orientationVal, i]);  // the first tile.id, is shape, second need to be an increment of total_tiles.
+                pool.query(insertTileGenQuery, [createdGameId, tile.shape, orientationVal, i]);
                 i++;
             };
-            // .then(result => {  //  don't need a send status just yet...
             res.sendStatus(201);
         }).catch(err => {
-            // catch 
             console.log(err);
             res.sendStatus(500)
         })
@@ -75,7 +73,7 @@ router.post('/', (req, res) => {
 router.delete(`/:id`, (req, res) => {
     console.log(req.params.id);
     const gameOver = req.params.id;
-    const query = `DELETE FROM "game" WHERE "id"=$1;`  //  RETURNING "id"?
+    const query = `DELETE FROM "game" WHERE "id"=$1;`
     pool.query(query, [gameOver])
         .then(async result => {
             const gameTilesQuery = `DELETE FROM "game_tiles" WHERE "game_id"=$1;`
@@ -88,14 +86,12 @@ router.delete(`/:id`, (req, res) => {
 });
 
 
-// get the game_tiles tiles array
+// GET the game_tiles tiles array
 router.get(`/:id`, (req, res) => {
-    // console.log('game router', req.params.id);  // is the correct id
     const gameOn = req.params.id;
     const gameTilesQuery = `SELECT * FROM "game_tiles" WHERE "game_id"=$1 ORDER BY "tile_pos" ASC;`
     pool.query(gameTilesQuery, [gameOn])
         .then(result => {
-            // console.log('game_tiles', result.rows); // looks good.
             res.send(result.rows);
         }).catch(err => {
             console.log('Could not load game_tiles')
@@ -103,11 +99,11 @@ router.get(`/:id`, (req, res) => {
 });
 
 
-// updates the tile_pos in game_tiles DB
+// UPDATE the tile_pos in game_tiles DB
 router.put(`/:id`, async (req, res) => {
     const mazeToUpdate = req.params.id;
     const update = req.body.payload;
-    console.log('update router, game & update', mazeToUpdate, update);  // mazeToUpdate correct, update correct.
+    console.log('update router, game & update', mazeToUpdate, update);
     try {
         for (let i = 0; i < update.length; i++) {
         const queryText = `UPDATE "game_tiles" SET "tile_pos" = $1, "tile_orientation"= $2
@@ -117,41 +113,10 @@ router.put(`/:id`, async (req, res) => {
     res.sendStatus(201);
 } // end try
 catch ( err ) {
-    // catch 
     console.log(err);
     res.sendStatus(500)
 }
-}); // end mazeUpdate.
-
+}); 
 
 
 module.exports = router;
-
-
-// Scraps
-
- // removed from below line 27 for redundancy.
-     // handle the tiles, first link it to new game.  If I insert the game_id #= to total_tiles that would get me the right #.
-//         const insertGameTileIDQuery = `  // this becomes redundant if I am going to the insert it 9 more times.
-//   INSERT INTO "games_tiles" ("game_id")
-//   VALUES  ($1);
-//   `
-//         pool.query(insertGameTileIDQuery, [createdGameId]).then(result => {
-//             // then figure out how to have game_tiles spawn all that info.
-
-// const query = `SELECT * FROM "game" WHERE "id"=$1;`
-// pool.query(query, [gameOn])
-
-// og get, want to update to get game info too
-// router.get(`/:id`, (req, res) => {
-//     // console.log('game router', req.params.id);  // is the correct id
-//     const gameOn = req.params.id;
-//     const gameTilesQuery = `SELECT * FROM "game_tiles" WHERE "game_id"=$1;`
-//     pool.query(gameTilesQuery, [gameOn])
-//         .then(result => {
-//             // console.log('game_tiles', result.rows); // looks good.
-//             res.send(result.rows);
-//         }).catch(err => {
-//             console.log('Could not load game_tiles')
-//         });
-// });

@@ -86,8 +86,6 @@ function GameBoard() {
         console.log(newPartyPos);
         dispatch({ type: 'MOVE_PARTY', payload: {partyPos: newPartyPos, id: gameId }})
         // dispatch({ type: 'GAME_INFO', payload: params.id });
-        // console.log(params.id);
-
     } // end playerMove
 
 
@@ -129,7 +127,7 @@ function GameBoard() {
                         <button onClick={() => playerMove(grid, 'down')}><img className="arrow" src={downKey} /></button>
                     </div>
                 </div>
-                <div className="bossBox"> {/*  onClick={bossMove()}*/}
+                <div className="bossBox">
                     <img className="token" src={Boss} alt="red skull" />
                     <div className='arrowKeys'>
                         <button onClick={() => bossMove(grid, 'left')}> <img className="arrow" src={leftKey}/> </button>

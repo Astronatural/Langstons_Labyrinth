@@ -20,17 +20,27 @@ To install dependancies:
 npm install
 
 To load application:
-npm run server / npm run client
+Dual terminal boot required.
+npm run server / npm run client.
 
 
 ## Users Manual
 
-Langston's Labyrinth 
+Langston's Labyrinth will require you to log in to keep track of your labyrinths.  Once logged in you will be able to make a new labyrinth by giving it a name.  Labyrinths you have made previously are listed by name and turn number on the top of the user page.  Clicking on the “load” button will take you to the Game-board.  Here you will see the labyrinth and two tokens; a blue shield and a red bull’s head.  The shield represents your player’s party and starts in the top left corner.  The bull’s head is meant to represent the boss of the labyrinth and it starts in the center.  
+
+The rules of play are very simple and, as with all RPGs, are totally up to the GM.  As the Gm explain to your players what adjacent rooms are available for the players to move into.  Tokens are intended to move wherever an open hallway exists between two tiles.  This includes allowing tokens to move “off the grid” if an open pathway exists.  Once your players have made their choice move the shield token by clicking the appropriate arrow button beneath the Blue Shield icon on the top of the screen.  Next choose where (if anywhere) you would want the boss to move to and enter that selection with the arrow buttons under the Red Bull’s head. 
+
+Clicking on the “Move Maze” button will select an entire row and column to be moved one position in a random direction.  It will also add to the turn counter at the top of the page but feel free to move the labyrinth as often as you see fit to keep an interesting pace for your players.
+
+When your game session is at an end clicking “Exit the Labyrinth” button will save the labyrinth in its current state and take you back to your user page.
+
+As it stands it is up to the GM to populate the labyrinth with encounters and treasure as you see fit.  A future version might include tools an options to help and inspire you with this task.
+
 
 
 ## Dependancies/ Built With
 
-Langston's Labyrinth is a React App built with Node.js.  Passport.js provides authentication.
+Langston's Labyrinth is a [React.js](https://reactjs.org/) app built with [React-Redux](https://react-redux.js.org/).  The [Node.js](https://nodejs.org/en/) and [Axios](https://github.com/axios/axios) libraries were used as well.  [Passport.js](http://www.passportjs.org/) provides authentication.
 
 
 ## Thanks

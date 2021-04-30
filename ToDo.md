@@ -27,3 +27,4 @@ In GameBoard.css might not need the rotation designations anymore.
 Delete info page
 
 Remake your databases!!!!
+--double-check but should be good.

@@ -1,6 +1,6 @@
 Lots of things to do:
 
-Finish/polish readMe.
+
 
 Add a "rule-set"/ info guide on how to use the app within the app.
 
@@ -16,7 +16,7 @@ Change database name.  Also in pool.js
 
 Fix state on load/delete labyrinth.
 
-Delete doc/images, debug pics.
+
 
 Delete server/constants/warnings???
 
@@ -24,7 +24,7 @@ In game.router:  Add a 3rd query to set a1 as cross and middle tile as end.
 
 In GameBoard.css might not need the rotation designations anymore.
 
-Delete info page
+
 
 Remake your databases!!!!
 --double-check but should be good.

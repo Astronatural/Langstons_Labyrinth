@@ -11,7 +11,7 @@ There are no rules to Langston’s Labyrinth.  As the GM you set the pace as you
 
 ## Project Status
 
-This project is still a work in progress.  Although it is very close to 1.0.  
+This project is still a work in progress, although it is very close to 1.0.  
 
 
 ## Installation
@@ -22,6 +22,8 @@ npm install
 To load application:
 Dual terminal boot required.
 npm run server / npm run client.
+
+You will also need to copy the information in database.sql into your preffered database manager.  I used Postico.  Be sure to name your database "Labyrinth".
 
 
 ## Users Manual
@@ -52,7 +54,7 @@ Thanks to [Emerging Digital Academy](https://www.emergingacademy.org/) for equip
 
 This app is not intended for sale, but it is intended for use.  User experience may vary.  You are free to use this app as you see fit.  Have Fun!
 
-But also, MIT License
+But also; MIT License
 
 Copyright 2021 Jon Kranzler
 

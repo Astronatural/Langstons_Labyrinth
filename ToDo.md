@@ -4,7 +4,7 @@ Lots of things to do:
 
 Add a "rule-set"/ info guide on how to use the app within the app.
 
-Change name in dependancies.
+Change name in dependancies. ???
 
 Check token pos against tile movement.
 
@@ -12,7 +12,7 @@ Allow users to decide on grid size.
 
 Bring back the rotation when a piece moves off grid.
 
-Change database name.  Also in pool.js
+~~Change database name.  Also in pool.js~~
 
 Fix state on load/delete labyrinth.
 

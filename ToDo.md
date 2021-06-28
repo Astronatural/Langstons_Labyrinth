@@ -22,7 +22,7 @@ Delete server/constants/warnings???
 
 In game.router:  Add a 3rd query to set a1 as cross and middle tile as end.
 
-In GameBoard.css might not need the rotation designations anymore.
+~~In GameBoard.css might not need the rotation designations anymore.~~
 
 
 

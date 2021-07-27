@@ -12,11 +12,8 @@ Allow users to decide on grid size.
 
 Bring back the rotation when a piece moves off grid.
 
-<<<<<<< HEAD
-=======
 ~~Change database name.  Also in pool.js~~
 
->>>>>>> b02e25282855cc30aa6661a31e3aba431d96f334
 Fix state on load/delete labyrinth.
 
 Delete server/constants/warnings???

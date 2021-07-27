@@ -44,6 +44,4 @@ function Nav() {
 
 export default Nav;
 
-/* scraps
-  <Link to='/search?legs=1000&type=insect'>Search for insect with 1000 legs</Link>
-*/
+
